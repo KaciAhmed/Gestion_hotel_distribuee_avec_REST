@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Web;
 
-namespace VersionDistribueeHotel
+namespace ProjetGestionDonneeHotel
 {
     public class Hotel
     {
@@ -45,22 +44,5 @@ namespace VersionDistribueeHotel
         public Adresse Adresse { get => adresse; set => adresse = value; }
         public List<Chambre> Chambres { get => chambres; set => chambres = value; }
         public List<Agence> Agences { get => agences; set => agences = value; }
-
-        public List <Chambre> getChambresDisponible(String dateDebut, int nbPersonne)
-        {
-            DateTime dateDebutTemp = DateTime.ParseExact(dateDebut, "dd/MM/yyyy", new CultureInfo("fr-FR", false));
-            DateTime dateDisponibilte;
-            List<Chambre> chambres = new List<Chambre>();
-            foreach (Chambre chambre in this.chambres)
-            {
-                dateDisponibilte = DateTime.ParseExact(chambre.DateDisponibilite, "dd/MM/yyyy", new CultureInfo("fr-FR", false));
-                if (DateTime.Compare(dateDisponibilte, dateDebutTemp) <= 0 && chambre.TypeChambre.NbLits == nbPersonne && chambre.EstLibre)
-                {
-                    chambres.Add(chambre);
-                }
-            }
-            return chambres;
-        }
-
     }
 }

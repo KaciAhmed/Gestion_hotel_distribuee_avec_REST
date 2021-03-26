@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="getAgences">
+        <s:complexType />
+      </s:element>
+      <s:element name="getAgencesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getAgencesResult" type="tns:ArrayOfAgence" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAgence">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Agence" nillable="true" type="tns:Agence" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Agence">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Identifiant" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nom" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Login" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MotDePAsse" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PourcentageReduction" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Adresse" type="tns:Adresse" />
+          <s:element minOccurs="0" maxOccurs="1" name="HistoriqueReservations" type="tns:ArrayOfReservation" />
+          <s:element minOccurs="0" maxOccurs="1" name="Clients" type="tns:ArrayOfClient" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Adresse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Identifiant" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Numero" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Rue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pays" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PositionGPS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LieuDit" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfReservation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Reservation" nillable="true" type="tns:Reservation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Reservation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Identifiant" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateDebut" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateFin" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NbPersonne" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="InformationCarteCredit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Client" type="tns:Client" />
+          <s:element minOccurs="0" maxOccurs="1" name="Agence" type="tns:Agence" />
+          <s:element minOccurs="0" maxOccurs="1" name="Chambres" type="tns:ArrayOfChambre" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Client">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Identifiant" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nom" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Prenom" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HistoriqueReservations" type="tns:ArrayOfReservation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfChambre">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Chambre" nillable="true" type="tns:Chambre" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Chambre">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Identifiant" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Numero" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstLibre" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateDisponibilite" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrixDeBase" type="s:float" />
+          <s:element minOccurs="0" maxOccurs="1" name="HistoriqueReservations" type="tns:ArrayOfReservation" />
+          <s:element minOccurs="0" maxOccurs="1" name="TypeChambre" type="tns:TypeChambre" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TypeChambre">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="NbLits" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfClient">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Client" nillable="true" type="tns:Client" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getHotel">
+        <s:complexType />
+      </s:element>
+      <s:element name="getHotelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getHotelResult" type="tns:Hotel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Hotel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Identifiant" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Adresse" type="tns:Adresse" />
+          <s:element minOccurs="0" maxOccurs="1" name="Chambres" type="tns:ArrayOfChambre" />
+          <s:element minOccurs="0" maxOccurs="1" name="Agences" type="tns:ArrayOfAgence" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="getChambresDisponible">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dateDebut" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="nbPersonne" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getChambresDisponibleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getChambresDisponibleResult" type="tns:ArrayOfChambre" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getAgencesSoapIn">
+    <wsdl:part name="parameters" element="tns:getAgences" />
+  </wsdl:message>
+  <wsdl:message name="getAgencesSoapOut">
+    <wsdl:part name="parameters" element="tns:getAgencesResponse" />
+  </wsdl:message>
+  <wsdl:message name="getHotelSoapIn">
+    <wsdl:part name="parameters" element="tns:getHotel" />
+  </wsdl:message>
+  <wsdl:message name="getHotelSoapOut">
+    <wsdl:part name="parameters" element="tns:getHotelResponse" />
+  </wsdl:message>
+  <wsdl:message name="getChambresDisponibleSoapIn">
+    <wsdl:part name="parameters" element="tns:getChambresDisponible" />
+  </wsdl:message>
+  <wsdl:message name="getChambresDisponibleSoapOut">
+    <wsdl:part name="parameters" element="tns:getChambresDisponibleResponse" />
+  </wsdl:message>
+  <wsdl:portType name="WebServiceGestionDonneeSoap">
+    <wsdl:operation name="getAgences">
+      <wsdl:input message="tns:getAgencesSoapIn" />
+      <wsdl:output message="tns:getAgencesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getHotel">
+      <wsdl:input message="tns:getHotelSoapIn" />
+      <wsdl:output message="tns:getHotelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getChambresDisponible">
+      <wsdl:input message="tns:getChambresDisponibleSoapIn" />
+      <wsdl:output message="tns:getChambresDisponibleSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WebServiceGestionDonneeSoap" type="tns:WebServiceGestionDonneeSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getAgences">
+      <soap:operation soapAction="http://tempuri.org/getAgences" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getHotel">
+      <soap:operation soapAction="http://tempuri.org/getHotel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getChambresDisponible">
+      <soap:operation soapAction="http://tempuri.org/getChambresDisponible" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WebServiceGestionDonneeSoap12" type="tns:WebServiceGestionDonneeSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getAgences">
+      <soap12:operation soapAction="http://tempuri.org/getAgences" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getHotel">
+      <soap12:operation soapAction="http://tempuri.org/getHotel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getChambresDisponible">
+      <soap12:operation soapAction="http://tempuri.org/getChambresDisponible" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebServiceGestionDonnee">
+    <wsdl:port name="WebServiceGestionDonneeSoap" binding="tns:WebServiceGestionDonneeSoap">
+      <soap:address location="https://localhost:44364/WebServiceGestionDonnee.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WebServiceGestionDonneeSoap12" binding="tns:WebServiceGestionDonneeSoap12">
+      <soap12:address location="https://localhost:44364/WebServiceGestionDonnee.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

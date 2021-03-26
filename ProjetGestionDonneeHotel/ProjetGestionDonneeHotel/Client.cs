@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace VersionDistribueeHotel
+namespace ProjetGestionDonneeHotel
 {
     public class Client
     {
@@ -28,6 +28,5 @@ namespace VersionDistribueeHotel
         public string Nom { get => nom; set => nom = value; }
         public string Prenom { get => prenom; set => prenom = value; }
         public List<Reservation> HistoriqueReservations { get => historiqueReservations; set => historiqueReservations = value; }
-
     }
 }

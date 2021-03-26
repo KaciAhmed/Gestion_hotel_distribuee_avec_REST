@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace VersionDistribueeHotel
+namespace ProjetGestionDonneeHotel
 {
     public class Chambre
     {
@@ -14,14 +14,13 @@ namespace VersionDistribueeHotel
         private float prixDeBase;
         private List<Reservation> historiqueReservations;
         private TypeChambre typeChambre;
-        private Hotel hotel;
 
         public Chambre()
         {
             historiqueReservations = new List<Reservation>();
         }
 
-        public Chambre(int identifiant, int numero, string dateDisponibilite,  float prixDeBase, bool estLibre, List<Reservation> historiqueReservations, TypeChambre typeChambre, Hotel hotel)
+        public Chambre(int identifiant, int numero, string dateDisponibilite, float prixDeBase, bool estLibre, List<Reservation> historiqueReservations, TypeChambre typeChambre)
         {
             this.identifiant = identifiant;
             this.numero = numero;
@@ -30,9 +29,8 @@ namespace VersionDistribueeHotel
             this.prixDeBase = prixDeBase;
             this.historiqueReservations = historiqueReservations;
             this.typeChambre = typeChambre;
-            this.hotel = hotel;
         }
-        public Chambre(int identifiant, int numero, Hotel hotel, string dateDisponibilite, TypeChambre typeChambre, float prixDeBase, bool estLibre)
+        public Chambre(int identifiant, int numero, string dateDisponibilite, TypeChambre typeChambre, float prixDeBase, bool estLibre)
         {
             this.identifiant = identifiant;
             this.numero = numero;
@@ -40,7 +38,6 @@ namespace VersionDistribueeHotel
             this.estLibre = estLibre;
             this.prixDeBase = prixDeBase;
             this.typeChambre = typeChambre;
-            this.hotel = hotel;
             historiqueReservations = new List<Reservation>();
         }
 
@@ -51,7 +48,5 @@ namespace VersionDistribueeHotel
         public float PrixDeBase { get => prixDeBase; set => prixDeBase = value; }
         public List<Reservation> HistoriqueReservations { get => historiqueReservations; set => historiqueReservations = value; }
         public TypeChambre TypeChambre { get => typeChambre; set => typeChambre = value; }
-        public Hotel Hotel { get => hotel; set => hotel = value; }
-
     }
 }

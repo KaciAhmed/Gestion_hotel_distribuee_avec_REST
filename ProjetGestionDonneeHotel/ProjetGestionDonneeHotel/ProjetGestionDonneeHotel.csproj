@@ -7,16 +7,16 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F871F7DF-2424-4700-9368-3706A7076E5F}</ProjectGuid>
+    <ProjectGuid>{E3F7BCD4-D76C-48A5-AAD6-0CD290B4DD1F}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VersionDistribueeHotel</RootNamespace>
-    <AssemblyName>VersionDistribueeHotel</AssemblyName>
+    <RootNamespace>ProjetGestionDonneeHotel</RootNamespace>
+    <AssemblyName>ProjetGestionDonneeHotel</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort>44356</IISExpressSSLPort>
+    <IISExpressSSLPort>44364</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -67,78 +67,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ConsulterDisponibilite.asmx" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <Content Include="Web References\ServiceGestionDonnee\Agence.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\ServiceGestionDonnee\Chambre.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <Content Include="Web References\ServiceGestionDonnee\Hotel.datasource">
-      <DependentUpon>Reference.map</DependentUpon>
-    </Content>
-    <None Include="Web References\ServiceGestionDonnee\Reference.map">
-      <Generator>MSDiscoCodeGenerator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-    <None Include="Web References\ServiceGestionDonnee\WebServiceGestionDonnee.disco" />
     <Content Include="Web.config" />
-    <Content Include="WebServiceReservation.asmx" />
+    <Content Include="WebServiceGestionDonnee.asmx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsulterDisponibilite.asmx.cs">
-      <DependentUpon>ConsulterDisponibilite.asmx</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Offre.cs" />
+    <Compile Include="Adresse.cs" />
+    <Compile Include="Agence.cs" />
+    <Compile Include="Chambre.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="Hotel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Web References\ServiceGestionDonnee\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.map</DependentUpon>
-    </Compile>
-    <Compile Include="WebServiceReservation.asmx.cs">
-      <DependentUpon>WebServiceReservation.asmx</DependentUpon>
+    <Compile Include="Reservation.cs" />
+    <Compile Include="TypeChambre.cs" />
+    <Compile Include="WebServiceGestionDonnee.asmx.cs">
+      <DependentUpon>WebServiceGestionDonnee.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Web References\ServiceGestionDonnee\WebServiceGestionDonnee.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferences Include="Web References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WebReferenceUrl Include="https://localhost:44364/WebServiceGestionDonnee.asmx">
-      <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\ServiceGestionDonnee\</RelPath>
-      <UpdateFromURL>https://localhost:44364/WebServiceGestionDonnee.asmx</UpdateFromURL>
-      <ServiceLocationURL>
-      </ServiceLocationURL>
-      <CachedDynamicPropName>
-      </CachedDynamicPropName>
-      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>VersionDistribueeHotel_ServiceGestionDonnee_WebServiceGestionDonnee</CachedSettingsPropName>
-    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -153,9 +106,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>64800</DevelopmentServerPort>
+          <DevelopmentServerPort>57349</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44356/</IISUrl>
+          <IISUrl>https://localhost:44364/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

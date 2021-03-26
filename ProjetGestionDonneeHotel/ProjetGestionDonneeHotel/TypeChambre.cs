@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace VersionDistribueeHotel
+namespace ProjetGestionDonneeHotel
 {
-
-    public class TypeChambre 
+    public class TypeChambre
     {
         private int nbLit;
-        public int NbLits { get=>nbLit; set=>nbLit=value; }
+        public int NbLits { get => nbLit; set => nbLit = value; }
 
         public TypeChambre()
         {
@@ -24,5 +23,4 @@ namespace VersionDistribueeHotel
             return NbLits.ToString();
         }
     }
-
 }

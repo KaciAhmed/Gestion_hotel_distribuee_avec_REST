@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace VersionDistribueeHotel
+namespace ProjetGestionDonneeHotel
 {
     public class Agence
     {
@@ -13,12 +13,12 @@ namespace VersionDistribueeHotel
         private string motDePAsse;
         private double pourcentageReduction;
         private Adresse adresse;
-      //  private List<Hotel> hotels;
+        //  private List<Hotel> hotels;
         private List<Reservation> historiqueReservations;
         private List<Client> clients;
         public Agence()
         {
-          //  hotels = new List<Hotel>();
+            //  hotels = new List<Hotel>();
             historiqueReservations = new List<Reservation>();
             clients = new List<Client>();
         }
@@ -31,7 +31,7 @@ namespace VersionDistribueeHotel
             this.motDePAsse = motDePAsse;
             this.pourcentageReduction = pourcentageReduction;
             this.adresse = adresse;
-          //  this.hotels = hotels;
+            //  this.hotels = hotels;
             this.historiqueReservations = historiqueReservations;
             this.clients = clients;
         }
@@ -52,10 +52,8 @@ namespace VersionDistribueeHotel
         public string MotDePAsse { get => motDePAsse; set => motDePAsse = value; }
         public double PourcentageReduction { get => pourcentageReduction; set => pourcentageReduction = value; }
         public Adresse Adresse { get => adresse; set => adresse = value; }
-     //   public List<Hotel> Hotels { get => hotels; set => hotels = value; }
+        //   public List<Hotel> Hotels { get => hotels; set => hotels = value; }
         public List<Reservation> HistoriqueReservations { get => historiqueReservations; set => historiqueReservations = value; }
         public List<Client> Clients { get => clients; set => clients = value; }
-
-
     }
 }

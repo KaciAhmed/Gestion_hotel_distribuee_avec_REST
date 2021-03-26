@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace VersionDistribueeHotel
+namespace ProjetGestionDonneeHotel
 {
     public class Adresse
     {
@@ -29,12 +29,9 @@ namespace VersionDistribueeHotel
 
         public int Identifiant { get => identifiant; set => identifiant = value; }
         public int Numero { get => numero; set => numero = value; }
-        public string Rue { get =>rue; set => rue = value; }
+        public string Rue { get => rue; set => rue = value; }
         public string Pays { get => pays; set => pays = value; }
         public string PositionGPS { get => positionGPS; set => positionGPS = value; }
-        public string LieuDit { get =>lieuDit; set => lieuDit = value; }
-
-
-        
+        public string LieuDit { get => lieuDit; set => lieuDit = value; }
     }
 }
