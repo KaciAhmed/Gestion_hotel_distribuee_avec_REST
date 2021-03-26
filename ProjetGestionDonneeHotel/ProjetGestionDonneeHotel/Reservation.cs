@@ -15,14 +15,13 @@ namespace ProjetGestionDonneeHotel
         private string informationCarteCredit;
         private Client client;
         private Agence agence;
-        private List<Chambre> chambres;
+        private Chambre chambre;
 
         public Reservation()
         {
-            chambres = new List<Chambre>();
         }
 
-        public Reservation(int identifiant, string reference, string dateDebut, string dateFin, int nbPersonne, string informationCarteCredit, Client client, Agence agence, List<Chambre> chambres)
+        public Reservation(int identifiant, string reference, string dateDebut, string dateFin, int nbPersonne, string informationCarteCredit, Client client, Agence agence, Chambre chambre)
         {
             this.identifiant = identifiant;
             this.reference = reference;
@@ -32,7 +31,19 @@ namespace ProjetGestionDonneeHotel
             this.informationCarteCredit = informationCarteCredit;
             this.client = client;
             this.agence = agence;
-            this.chambres = chambres;
+            this.chambre = chambre;
+        }
+        public Reservation(string reference, Chambre chambre, string dateDebut, string dateFin, int nbPersonne, string informationCarteCredit, Client client, Agence agence)
+        {
+            this.reference = reference;
+            this.chambre = chambre;
+            this.dateDebut = dateDebut;
+            this.dateFin = dateFin;
+            this.nbPersonne = nbPersonne;
+            this.informationCarteCredit = informationCarteCredit;
+            this.client = client;
+            this.agence = agence;
+        
         }
 
         public int Identifiant { get => identifiant; set => identifiant = value; }
@@ -43,6 +54,6 @@ namespace ProjetGestionDonneeHotel
         public string InformationCarteCredit { get => informationCarteCredit; set => informationCarteCredit = value; }
         public Client Client { get => client; set => client = value; }
         public Agence Agence { get => agence; set => agence = value; }
-        public List<Chambre> Chambres { get => chambres; set => chambres = value; }
+        public Chambre Chambre { get => chambre; set => chambre = value; }
     }
 }

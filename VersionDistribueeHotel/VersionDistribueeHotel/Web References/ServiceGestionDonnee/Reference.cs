@@ -35,6 +35,8 @@ namespace VersionDistribueeHotel.ServiceGestionDonnee {
         
         private System.Threading.SendOrPostCallback getChambresDisponibleOperationCompleted;
         
+        private System.Threading.SendOrPostCallback sauvegarderReservationOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -81,6 +83,9 @@ namespace VersionDistribueeHotel.ServiceGestionDonnee {
         
         /// <remarks/>
         public event getChambresDisponibleCompletedEventHandler getChambresDisponibleCompleted;
+        
+        /// <remarks/>
+        public event sauvegarderReservationCompletedEventHandler sauvegarderReservationCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getAgences", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -164,6 +169,49 @@ namespace VersionDistribueeHotel.ServiceGestionDonnee {
             if ((this.getChambresDisponibleCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.getChambresDisponibleCompleted(this, new getChambresDisponibleCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/sauvegarderReservation", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string sauvegarderReservation(Agence agence, string identifiantOffre, string dateDebut, string dateFin, int nombrePersonnes, string nomClient, string prenomClient, string infoCarteCreditClient) {
+            object[] results = this.Invoke("sauvegarderReservation", new object[] {
+                        agence,
+                        identifiantOffre,
+                        dateDebut,
+                        dateFin,
+                        nombrePersonnes,
+                        nomClient,
+                        prenomClient,
+                        infoCarteCreditClient});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void sauvegarderReservationAsync(Agence agence, string identifiantOffre, string dateDebut, string dateFin, int nombrePersonnes, string nomClient, string prenomClient, string infoCarteCreditClient) {
+            this.sauvegarderReservationAsync(agence, identifiantOffre, dateDebut, dateFin, nombrePersonnes, nomClient, prenomClient, infoCarteCreditClient, null);
+        }
+        
+        /// <remarks/>
+        public void sauvegarderReservationAsync(Agence agence, string identifiantOffre, string dateDebut, string dateFin, int nombrePersonnes, string nomClient, string prenomClient, string infoCarteCreditClient, object userState) {
+            if ((this.sauvegarderReservationOperationCompleted == null)) {
+                this.sauvegarderReservationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnsauvegarderReservationOperationCompleted);
+            }
+            this.InvokeAsync("sauvegarderReservation", new object[] {
+                        agence,
+                        identifiantOffre,
+                        dateDebut,
+                        dateFin,
+                        nombrePersonnes,
+                        nomClient,
+                        prenomClient,
+                        infoCarteCreditClient}, this.sauvegarderReservationOperationCompleted, userState);
+        }
+        
+        private void OnsauvegarderReservationOperationCompleted(object arg) {
+            if ((this.sauvegarderReservationCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.sauvegarderReservationCompleted(this, new sauvegarderReservationCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -447,8 +495,6 @@ namespace VersionDistribueeHotel.ServiceGestionDonnee {
         
         private float prixDeBaseField;
         
-        private Reservation[] historiqueReservationsField;
-        
         private TypeChambre typeChambreField;
         
         /// <remarks/>
@@ -502,22 +548,78 @@ namespace VersionDistribueeHotel.ServiceGestionDonnee {
         }
         
         /// <remarks/>
-        public Reservation[] HistoriqueReservations {
-            get {
-                return this.historiqueReservationsField;
-            }
-            set {
-                this.historiqueReservationsField = value;
-            }
-        }
-        
-        /// <remarks/>
         public TypeChambre TypeChambre {
             get {
                 return this.typeChambreField;
             }
             set {
                 this.typeChambreField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class TypeChambre {
+        
+        private int nbLitsField;
+        
+        /// <remarks/>
+        public int NbLits {
+            get {
+                return this.nbLitsField;
+            }
+            set {
+                this.nbLitsField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Client {
+        
+        private int identifiantField;
+        
+        private string nomField;
+        
+        private string prenomField;
+        
+        /// <remarks/>
+        public int Identifiant {
+            get {
+                return this.identifiantField;
+            }
+            set {
+                this.identifiantField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Nom {
+            get {
+                return this.nomField;
+            }
+            set {
+                this.nomField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Prenom {
+            get {
+                return this.prenomField;
+            }
+            set {
+                this.prenomField = value;
             }
         }
     }
@@ -546,7 +648,7 @@ namespace VersionDistribueeHotel.ServiceGestionDonnee {
         
         private Agence agenceField;
         
-        private Chambre[] chambresField;
+        private Chambre chambreField;
         
         /// <remarks/>
         public int Identifiant {
@@ -629,90 +731,12 @@ namespace VersionDistribueeHotel.ServiceGestionDonnee {
         }
         
         /// <remarks/>
-        public Chambre[] Chambres {
+        public Chambre Chambre {
             get {
-                return this.chambresField;
+                return this.chambreField;
             }
             set {
-                this.chambresField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class Client {
-        
-        private int identifiantField;
-        
-        private string nomField;
-        
-        private string prenomField;
-        
-        private Reservation[] historiqueReservationsField;
-        
-        /// <remarks/>
-        public int Identifiant {
-            get {
-                return this.identifiantField;
-            }
-            set {
-                this.identifiantField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Nom {
-            get {
-                return this.nomField;
-            }
-            set {
-                this.nomField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Prenom {
-            get {
-                return this.prenomField;
-            }
-            set {
-                this.prenomField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public Reservation[] HistoriqueReservations {
-            get {
-                return this.historiqueReservationsField;
-            }
-            set {
-                this.historiqueReservationsField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class TypeChambre {
-        
-        private int nbLitsField;
-        
-        /// <remarks/>
-        public int NbLits {
-            get {
-                return this.nbLitsField;
-            }
-            set {
-                this.nbLitsField = value;
+                this.chambreField = value;
             }
         }
     }
@@ -791,6 +815,32 @@ namespace VersionDistribueeHotel.ServiceGestionDonnee {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((Chambre[])(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    public delegate void sauvegarderReservationCompletedEventHandler(object sender, sauvegarderReservationCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class sauvegarderReservationCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal sauvegarderReservationCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
             }
         }
     }

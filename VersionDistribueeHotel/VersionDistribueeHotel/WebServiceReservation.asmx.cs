@@ -16,16 +16,36 @@ namespace VersionDistribueeHotel
     // [System.Web.Script.Services.ScriptService]
     public class WebServiceReservation : System.Web.Services.WebService
     {
-   
-        
-        public WebServiceReservation()
-        {
-        }
-
+        ServiceGestionDonnee.WebServiceGestionDonnee webServiceGestionDonnee = new ServiceGestionDonnee.WebServiceGestionDonnee();
         [WebMethod]
-        public string HelloWorld()
+        public string creerReservation(string LoginAgence, string mdp, string identifiantOffre,string dateDebut,string dateFin,int nombrePersonnes, string nomClient, string prenomClient, string infoCarteCreditClient)
         {
-            return "Hello World";
+            ServiceGestionDonnee.Agence agence = verifierConnexionAgence(LoginAgence, mdp);
+            if(agence == null)
+            {
+                return " PROBLEME : Erreur d'authentification de l'agence.";
+            }
+            else
+            {
+                string resultat = webServiceGestionDonnee.sauvegarderReservation(agence, identifiantOffre, dateDebut, dateFin, nombrePersonnes, nomClient, prenomClient, infoCarteCreditClient);
+                return resultat;
+
+            }
+           
+        }
+        public ServiceGestionDonnee.Agence verifierConnexionAgence(string login, string mdp)
+        {
+            ServiceGestionDonnee.Agence[] tabAgences = webServiceGestionDonnee.getAgences();
+            List<ServiceGestionDonnee.Agence> agences = new List<ServiceGestionDonnee.Agence>(tabAgences);
+            foreach (ServiceGestionDonnee.Agence agence in agences)
+            {
+                if (login.Equals(agence.Login) && mdp.Equals(agence.MotDePAsse))
+                {
+                    return agence;
+         
+                }
+            }
+            return null;
         }
     }
 }

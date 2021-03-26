@@ -5,5 +5,8 @@
     <Setting Name="Agence1_ReferenceServiceDisponibilte_ConsulterDisponibilite" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">https://localhost:44356/ConsulterDisponibilite.asmx</Value>
     </Setting>
+    <Setting Name="Agence1_ReferenceServiceReservation_WebServiceReservation" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://localhost:44356/WebServiceReservation.asmx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

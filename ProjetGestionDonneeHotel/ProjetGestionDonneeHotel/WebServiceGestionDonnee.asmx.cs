@@ -87,7 +87,44 @@ namespace ProjetGestionDonneeHotel
             }
             return chambres;
         }
+        [WebMethod]
+        public string sauvegarderReservation(Agence agence, string identifiantOffre,String dateDebut,String dateFin,int nombrePersonnes, string nomClient, string prenomClient, string infoCarteCreditClient)
+        {
+            Client client = creerClient(nomClient, prenomClient);
+            Chambre chambre = getChambre(identifiantOffre);
+            if(chambre == null)
+            {
+                return "PROBLEME : Erreur chambre invalide";
+            }
+            else
+            {
+                
+                Reservation reservation = new Reservation("Réference Réservation",chambre, dateDebut,dateFin,nombrePersonnes,infoCarteCreditClient,client,agence);
+                chambre.EstLibre = false;
+                return reservation.Reference;
+            }
+            
 
+        }
+        public Client creerClient(string nomClient, string prenomClient)
+        {
+            return new Client(nomClient, prenomClient);
+        }
+        public Chambre getChambre(string identifiantOffre)
+        {
+            string [] idHotelEtNumChambre= identifiantOffre.Split('_');
+            int numChambre = int.Parse(idHotelEtNumChambre[1]);
+            foreach(Chambre chambre in monHotel.Chambres)
+            {
+                if (chambre.Numero == numChambre)
+                {
+                    return chambre;
+                }
+            }
+
+            return null;
+
+        }
 
     }
 }

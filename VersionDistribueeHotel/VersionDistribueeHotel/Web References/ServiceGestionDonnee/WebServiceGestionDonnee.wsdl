@@ -54,7 +54,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="InformationCarteCredit" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Client" type="tns:Client" />
           <s:element minOccurs="0" maxOccurs="1" name="Agence" type="tns:Agence" />
-          <s:element minOccurs="0" maxOccurs="1" name="Chambres" type="tns:ArrayOfChambre" />
+          <s:element minOccurs="0" maxOccurs="1" name="Chambre" type="tns:Chambre" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="Client">
@@ -62,12 +62,6 @@
           <s:element minOccurs="1" maxOccurs="1" name="Identifiant" type="s:int" />
           <s:element minOccurs="0" maxOccurs="1" name="Nom" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Prenom" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="HistoriqueReservations" type="tns:ArrayOfReservation" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="ArrayOfChambre">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="Chambre" nillable="true" type="tns:Chambre" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="Chambre">
@@ -77,7 +71,6 @@
           <s:element minOccurs="1" maxOccurs="1" name="EstLibre" type="s:boolean" />
           <s:element minOccurs="0" maxOccurs="1" name="DateDisponibilite" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="PrixDeBase" type="s:float" />
-          <s:element minOccurs="0" maxOccurs="1" name="HistoriqueReservations" type="tns:ArrayOfReservation" />
           <s:element minOccurs="0" maxOccurs="1" name="TypeChambre" type="tns:TypeChambre" />
         </s:sequence>
       </s:complexType>
@@ -109,6 +102,11 @@
           <s:element minOccurs="0" maxOccurs="1" name="Agences" type="tns:ArrayOfAgence" />
         </s:sequence>
       </s:complexType>
+      <s:complexType name="ArrayOfChambre">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Chambre" nillable="true" type="tns:Chambre" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="getChambresDisponible">
         <s:complexType>
           <s:sequence>
@@ -121,6 +119,27 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="getChambresDisponibleResult" type="tns:ArrayOfChambre" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sauvegarderReservation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="agence" type="tns:Agence" />
+            <s:element minOccurs="0" maxOccurs="1" name="identifiantOffre" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateDebut" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateFin" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="nombrePersonnes" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="nomClient" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="prenomClient" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="infoCarteCreditClient" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sauvegarderReservationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sauvegarderReservationResult" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -144,6 +163,12 @@
   <wsdl:message name="getChambresDisponibleSoapOut">
     <wsdl:part name="parameters" element="tns:getChambresDisponibleResponse" />
   </wsdl:message>
+  <wsdl:message name="sauvegarderReservationSoapIn">
+    <wsdl:part name="parameters" element="tns:sauvegarderReservation" />
+  </wsdl:message>
+  <wsdl:message name="sauvegarderReservationSoapOut">
+    <wsdl:part name="parameters" element="tns:sauvegarderReservationResponse" />
+  </wsdl:message>
   <wsdl:portType name="WebServiceGestionDonneeSoap">
     <wsdl:operation name="getAgences">
       <wsdl:input message="tns:getAgencesSoapIn" />
@@ -156,6 +181,10 @@
     <wsdl:operation name="getChambresDisponible">
       <wsdl:input message="tns:getChambresDisponibleSoapIn" />
       <wsdl:output message="tns:getChambresDisponibleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sauvegarderReservation">
+      <wsdl:input message="tns:sauvegarderReservationSoapIn" />
+      <wsdl:output message="tns:sauvegarderReservationSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WebServiceGestionDonneeSoap" type="tns:WebServiceGestionDonneeSoap">
@@ -187,6 +216,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="sauvegarderReservation">
+      <soap:operation soapAction="http://tempuri.org/sauvegarderReservation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WebServiceGestionDonneeSoap12" type="tns:WebServiceGestionDonneeSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -210,6 +248,15 @@
     </wsdl:operation>
     <wsdl:operation name="getChambresDisponible">
       <soap12:operation soapAction="http://tempuri.org/getChambresDisponible" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sauvegarderReservation">
+      <soap12:operation soapAction="http://tempuri.org/sauvegarderReservation" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

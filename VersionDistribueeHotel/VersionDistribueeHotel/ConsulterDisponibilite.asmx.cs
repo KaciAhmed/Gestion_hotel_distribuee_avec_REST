@@ -18,13 +18,7 @@ namespace VersionDistribueeHotel
     // [System.Web.Script.Services.ScriptService]
     public class ConsulterDisponibilite : System.Web.Services.WebService
     {
-        // instancier des agences 
-        // proposer l'interface au client dans le dossier agence
-        // faire l'appel au web service chercher disponibilité
-        // recevoir les offre est l'afficher au client
-        // envoyer l'offre choisis par client au web service 2
-        // recevoir la réponse du second webService et l'afficher au client.
-
+       
         private ServiceGestionDonnee.Hotel monHotel;
         private ServiceGestionDonnee.Agence monAgenceEnTraitement;
         

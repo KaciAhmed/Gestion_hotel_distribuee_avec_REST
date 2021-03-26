@@ -32,5 +32,15 @@ namespace Agence1.Properties {
                 return ((string)(this["Agence1_ReferenceServiceDisponibilte_ConsulterDisponibilite"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://localhost:44356/WebServiceReservation.asmx")]
+        public string Agence1_ReferenceServiceReservation_WebServiceReservation {
+            get {
+                return ((string)(this["Agence1_ReferenceServiceReservation_WebServiceReservation"]));
+            }
+        }
     }
 }
