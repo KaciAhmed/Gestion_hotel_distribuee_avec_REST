@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace ProjetGestionDonneeHotel
+﻿namespace ProjetGestionDonneeHotel
 {
     public class Reservation
     {
@@ -43,7 +38,7 @@ namespace ProjetGestionDonneeHotel
             this.informationCarteCredit = informationCarteCredit;
             this.client = client;
             this.agence = agence;
-        
+
         }
 
         public int Identifiant { get => identifiant; set => identifiant = value; }

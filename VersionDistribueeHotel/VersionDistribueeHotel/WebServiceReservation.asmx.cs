@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Services;
 
 namespace VersionDistribueeHotel
@@ -16,12 +13,12 @@ namespace VersionDistribueeHotel
     // [System.Web.Script.Services.ScriptService]
     public class WebServiceReservation : System.Web.Services.WebService
     {
-        ServiceGestionDonnee.WebServiceGestionDonnee webServiceGestionDonnee = new ServiceGestionDonnee.WebServiceGestionDonnee();
+        private ServiceGestionDonnee.WebServiceGestionDonnee webServiceGestionDonnee = new ServiceGestionDonnee.WebServiceGestionDonnee();
         [WebMethod]
-        public string creerReservation(string LoginAgence, string mdp, string identifiantOffre,string dateDebut,string dateFin,int nombrePersonnes, string nomClient, string prenomClient, string infoCarteCreditClient)
+        public string creerReservation(string LoginAgence, string mdp, string identifiantOffre, string dateDebut, string dateFin, int nombrePersonnes, string nomClient, string prenomClient, string infoCarteCreditClient)
         {
             ServiceGestionDonnee.Agence agence = verifierConnexionAgence(LoginAgence, mdp);
-            if(agence == null)
+            if (agence == null)
             {
                 return " PROBLEME : Erreur d'authentification de l'agence.";
             }
@@ -31,7 +28,7 @@ namespace VersionDistribueeHotel
                 return resultat;
 
             }
-           
+
         }
         public ServiceGestionDonnee.Agence verifierConnexionAgence(string login, string mdp)
         {
@@ -42,7 +39,7 @@ namespace VersionDistribueeHotel
                 if (login.Equals(agence.Login) && mdp.Equals(agence.MotDePAsse))
                 {
                     return agence;
-         
+
                 }
             }
             return null;

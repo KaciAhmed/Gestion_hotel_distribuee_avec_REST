@@ -1,21 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Agence1
 {
-    class Program
+    internal class Program
     {
-        
+
         private readonly static string LoginAgence = "LoginAgence1";
         private readonly static string mdp = "123";
-        private  static ReferenceServiceDisponibilte.ConsulterDisponibilite serviceDisponibiliteHotel = new ReferenceServiceDisponibilte.ConsulterDisponibilite();
+        private static ReferenceServiceDisponibilte.ConsulterDisponibilite serviceDisponibiliteHotel = new ReferenceServiceDisponibilte.ConsulterDisponibilite();
         private static ReferenceServiceReservation.WebServiceReservation serviceReservation = new ReferenceServiceReservation.WebServiceReservation();
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             string dateArrivee;
             string dateDepart;
@@ -52,7 +49,7 @@ namespace Agence1
                         offre = getOffre(choix, offres);
                     } while (offre == null);
 
-                    resultatReservation= effectuerReservation(LoginAgence, mdp, offre.Identifiant,dateArrivee,dateDepart, nombrePersonnes, nomClient, prenomClient, infoCarteCreditClient);
+                    resultatReservation = effectuerReservation(LoginAgence, mdp, offre.Identifiant, dateArrivee, dateDepart, nombrePersonnes, nomClient, prenomClient, infoCarteCreditClient);
                     Console.WriteLine(resultatReservation);
 
                     choix = saisie("voulez effectuer une autre réservation (1 = oui / -1 = non)");
@@ -85,10 +82,9 @@ namespace Agence1
             }
             return null;
         }
-        public static string effectuerReservation(string LoginAgence,string mdp,string identifiantOffre,String dateDebut,String dateFin,int nombrePersonnes,string nomClient,string prenomClient,string infoCarteCreditClient)
+        public static string effectuerReservation(string LoginAgence, string mdp, string identifiantOffre, String dateDebut, String dateFin, int nombrePersonnes, string nomClient, string prenomClient, string infoCarteCreditClient)
         {
             return serviceReservation.creerReservation(LoginAgence, mdp, identifiantOffre, dateDebut, dateFin, nombrePersonnes, nomClient, prenomClient, infoCarteCreditClient);
-           
         }
 
     }

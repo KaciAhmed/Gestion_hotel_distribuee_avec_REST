@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace VersionDistribueeHotel
+﻿namespace VersionDistribueeHotel
 {
-    
-    public class Offre 
+
+    public class Offre
     {
         private string identifiant;
         private ServiceGestionDonnee.TypeChambre typeChambre;
         private string dateDisponibilite;
         private double prix;
-        public string Identifiant { get=> identifiant; set=>identifiant=value; }
-        public ServiceGestionDonnee.TypeChambre TypeChambre { get=>typeChambre; set=> typeChambre=value; }
-        public string DateDisponibilite { get=>dateDisponibilite; set=>dateDisponibilite=value; }  
-        public double Prix { get=>prix; set=>prix=value; }
+        public string Identifiant { get => identifiant; set => identifiant = value; }
+        public ServiceGestionDonnee.TypeChambre TypeChambre { get => typeChambre; set => typeChambre = value; }
+        public string DateDisponibilite { get => dateDisponibilite; set => dateDisponibilite = value; }
+        public double Prix { get => prix; set => prix = value; }
 
         public Offre()
         {
@@ -31,7 +26,7 @@ namespace VersionDistribueeHotel
 
         public override string ToString()
         {
-            return Identifiant+","+TypeChambre+","+DateDisponibilite+","+Prix;
+            return Identifiant + "," + TypeChambre + "," + DateDisponibilite + "," + Prix;
         }
     }
 }
