@@ -144,6 +144,8 @@ namespace Agence1.ReferenceServiceDisponibilte {
         
         private double prixField;
         
+        private byte[] imageField;
+        
         /// <remarks/>
         public string Identifiant {
             get {
@@ -181,6 +183,17 @@ namespace Agence1.ReferenceServiceDisponibilte {
             }
             set {
                 this.prixField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
+        public byte[] Image {
+            get {
+                return this.imageField;
+            }
+            set {
+                this.imageField = value;
             }
         }
     }

@@ -16,29 +16,32 @@ namespace ProjetGestionDonneeHotel
     public class WebServiceGestionDonnee : System.Web.Services.WebService
     {
         private Hotel monHotel;
-        private Agence monAgenceEnTraitement;
         private Agence agence1;
         private Agence agence2;
         private Agence agence3;
+
         public WebServiceGestionDonnee()
         {
+            string pathDossierImages = @"C:\Users\DELL\source\repos\gestionhoteldistribueparagencedevoyage\ProjetGestionDonneeHotel\ProjetGestionDonneeHotel\assets\";
             monHotel = new Hotel(1, "Hotel1", 5, new Adresse(1, 12, "Rue Hotel 1", "France", "43.6°N, 3.9°E", "Lieu dit Hotel 1"));
 
             TypeChambre typeChambre1 = new TypeChambre(1);
             TypeChambre typeChambre2 = new TypeChambre(2);
             TypeChambre typeChambre3 = new TypeChambre(3);
 
-            Chambre chambre1 = new Chambre(1, 1, "01/03/2021", typeChambre1, 42, true);
-            Chambre chambre2 = new Chambre(2, 15, "10/03/2021", typeChambre1, 40, true);
-            Chambre chambre3 = new Chambre(3, 12, "10/04/2021", typeChambre1, 30, true);
+            Chambre chambre1 = new Chambre(1, 1, "01/03/2021", typeChambre1, 42, true, pathDossierImages + "1_lit.png");
+            Chambre chambre2 = new Chambre(2, 15, "10/03/2021", typeChambre1, 40, true, pathDossierImages + "1_lit.png");
+            Chambre chambre3 = new Chambre(3, 12, "10/04/2021", typeChambre1, 30, true, pathDossierImages + "1_lit.png");
 
-            Chambre chambre4 = new Chambre(4, 22, "02/03/2021", typeChambre2, 70, true);
-            Chambre chambre5 = new Chambre(5, 25, "20/03/2021", typeChambre2, 65, true);
-            Chambre chambre6 = new Chambre(6, 28, "02/04/2021", typeChambre2, 60, true);
+            Chambre chambre4 = new Chambre(4, 22, "02/03/2021", typeChambre2, 70, true, pathDossierImages + "2_lit.png");
+            Chambre chambre5 = new Chambre(5, 25, "20/03/2021", typeChambre2, 65, true, pathDossierImages + "2_lit.png");
+            Chambre chambre6 = new Chambre(6, 28, "02/04/2021", typeChambre2, 60, true, pathDossierImages + "2_lit.png");
 
-            Chambre chambre7 = new Chambre(7, 32, "02/03/2021", typeChambre3, 100, true);
-            Chambre chambre8 = new Chambre(8, 35, "18/03/2021", typeChambre3, 90, true);
-            Chambre chambre9 = new Chambre(9, 38, "31/03/2021", typeChambre3, 85, true);
+            Chambre chambre7 = new Chambre(7, 32, "02/03/2021", typeChambre3, 100, true, pathDossierImages + "3_lit.png");
+            Chambre chambre8 = new Chambre(8, 35, "18/03/2021", typeChambre3, 90, true, pathDossierImages + "3_lit.png");
+            Chambre chambre9 = new Chambre(9, 38, "31/03/2021", typeChambre3, 85, true, pathDossierImages + "3_lit.png");
+
+
 
             monHotel.Chambres.Add(chambre1);
             monHotel.Chambres.Add(chambre2);
@@ -85,11 +88,20 @@ namespace ProjetGestionDonneeHotel
             }
             return chambres;
         }
+        
+
+         
+        public int RandomNumber(int min, int max)
+        {
+            Random _random = new Random();
+            return _random.Next(min, max);
+        }
         [WebMethod]
         public string sauvegarderReservation(Agence agence, string identifiantOffre, String dateDebut, String dateFin, int nombrePersonnes, string nomClient, string prenomClient, string infoCarteCreditClient)
         {
             Client client = creerClient(nomClient, prenomClient);
             Chambre chambre = getChambre(identifiantOffre);
+            int idReservation = RandomNumber(1000, 9999);
             if (chambre == null)
             {
                 return "PROBLEME : Erreur chambre invalide";
@@ -97,7 +109,7 @@ namespace ProjetGestionDonneeHotel
             else
             {
 
-                Reservation reservation = new Reservation("Réference Réservation", chambre, dateDebut, dateFin, nombrePersonnes, infoCarteCreditClient, client, agence);
+                Reservation reservation = new Reservation("#"+idReservation, chambre, dateDebut, dateFin, nombrePersonnes, infoCarteCreditClient, client, agence);
                 chambre.EstLibre = false;
                 return reservation.Reference;
             }
@@ -121,7 +133,6 @@ namespace ProjetGestionDonneeHotel
             }
 
             return null;
-
         }
 
     }

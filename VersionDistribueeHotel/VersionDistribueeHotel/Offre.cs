@@ -1,4 +1,6 @@
-﻿namespace VersionDistribueeHotel
+﻿using VersionDistribueeHotel.ServiceGestionDonnee;
+
+namespace VersionDistribueeHotel
 {
 
     public class Offre
@@ -7,26 +9,29 @@
         private ServiceGestionDonnee.TypeChambre typeChambre;
         private string dateDisponibilite;
         private double prix;
+        private byte[] image;
         public string Identifiant { get => identifiant; set => identifiant = value; }
         public ServiceGestionDonnee.TypeChambre TypeChambre { get => typeChambre; set => typeChambre = value; }
         public string DateDisponibilite { get => dateDisponibilite; set => dateDisponibilite = value; }
         public double Prix { get => prix; set => prix = value; }
+        public byte[] Image { get => image; set => image = value; }
 
         public Offre()
         {
         }
 
-        public Offre(string identifiant, ServiceGestionDonnee.TypeChambre typeChambre, string dateDisponibilite, double prix)
+        public Offre(string identifiant, TypeChambre typeChambre, string dateDisponibilite, double prix, byte[] image)
         {
-            Identifiant = identifiant;
-            TypeChambre = typeChambre;
-            DateDisponibilite = dateDisponibilite;
-            Prix = prix;
+            this.identifiant = identifiant;
+            this.typeChambre = typeChambre;
+            this.dateDisponibilite = dateDisponibilite;
+            this.prix = prix;
+            this.image = image;
         }
 
         public override string ToString()
         {
-            return Identifiant + "," + TypeChambre + "," + DateDisponibilite + "," + Prix;
+            return Identifiant + "," + TypeChambre + "," + DateDisponibilite + "," + Prix + "," + image;
         }
     }
 }

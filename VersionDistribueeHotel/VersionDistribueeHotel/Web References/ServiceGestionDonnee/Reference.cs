@@ -497,6 +497,10 @@ namespace VersionDistribueeHotel.ServiceGestionDonnee {
         
         private TypeChambre typeChambreField;
         
+        private string urlImageField;
+        
+        private byte[] imageField;
+        
         /// <remarks/>
         public int Identifiant {
             get {
@@ -554,6 +558,27 @@ namespace VersionDistribueeHotel.ServiceGestionDonnee {
             }
             set {
                 this.typeChambreField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string UrlImage {
+            get {
+                return this.urlImageField;
+            }
+            set {
+                this.urlImageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
+        public byte[] Image {
+            get {
+                return this.imageField;
+            }
+            set {
+                this.imageField = value;
             }
         }
     }

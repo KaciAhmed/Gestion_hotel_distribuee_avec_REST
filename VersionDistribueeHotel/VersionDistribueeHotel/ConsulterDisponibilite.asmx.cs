@@ -61,7 +61,7 @@ namespace VersionDistribueeHotel
             foreach (ServiceGestionDonnee.Chambre chambre in chambres)
             {
                 prix = chambre.PrixDeBase * (1 - monAgenceEnTraitement.PourcentageReduction);
-                offre = new Offre(monHotel.Identifiant + "_" + chambre.Numero, chambre.TypeChambre, chambre.DateDisponibilite, prix);
+                offre = new Offre(monHotel.Identifiant + "_" + chambre.Numero, chambre.TypeChambre, chambre.DateDisponibilite, prix, chambre.Image);
                 offres.Add(offre);
             }
             return offres;

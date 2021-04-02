@@ -31,6 +31,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="TypeChambre" type="tns:TypeChambre" />
           <s:element minOccurs="0" maxOccurs="1" name="DateDisponibilite" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="Prix" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:base64Binary" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="TypeChambre">

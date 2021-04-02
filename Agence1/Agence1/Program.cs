@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 
 namespace Agence1
 {
@@ -35,6 +37,7 @@ namespace Agence1
                 tabOffres = serviceDisponibiliteHotel.chercherDisponibilite(LoginAgence, mdp, dateArrivee, dateDepart, nombrePersonnes);
                 offres = new List<ReferenceServiceDisponibilte.Offre>(tabOffres);
                 afficherOffres(offres);
+               
 
                 choix = saisie("voulez vous continuer (1 = oui / -1 = non)");
                 if (!choix.Equals(-1))
@@ -50,7 +53,8 @@ namespace Agence1
                     } while (offre == null);
 
                     resultatReservation = effectuerReservation(LoginAgence, mdp, offre.Identifiant, dateArrivee, dateDepart, nombrePersonnes, nomClient, prenomClient, infoCarteCreditClient);
-                    Console.WriteLine(resultatReservation);
+
+                    afficherResultatReservation(resultatReservation);
 
                     choix = saisie("voulez effectuer une autre réservation (1 = oui / -1 = non)");
                 }
@@ -64,11 +68,33 @@ namespace Agence1
             string res = Console.ReadLine();
             return res;
         }
+        public static Image byteArrayToImage(byte[] bytesArr)
+        {
+            using (MemoryStream memstr = new MemoryStream(bytesArr))
+            {
+                Image img = Image.FromStream(memstr);
+                return img;
+            }
+        }
         public static void afficherOffres(List<ReferenceServiceDisponibilte.Offre> offres)
         {
             foreach (ReferenceServiceDisponibilte.Offre offre in offres)
             {
+                Image image = byteArrayToImage(offre.Image);
+                image.Save(offre.Identifiant + "_chambre.png", ImageFormat.Png);
                 Console.WriteLine("identifiant Offre : " + offre.Identifiant + ", Date Disponibilté : " + offre.DateDisponibilite + ", Type Chambre (nombre de lits) :" + offre.TypeChambre.NbLits + ", Prix :" + offre.Prix);
+            }
+        }
+        private static void afficherResultatReservation(String resultat)
+        {
+            if (resultat.StartsWith("#"))
+            {
+                Console.WriteLine("Réservation réussi.");
+                Console.WriteLine("La référence de votre réservation est :"+resultat);
+            }
+            else
+            {
+                Console.WriteLine(resultat);
             }
         }
         public static ReferenceServiceDisponibilte.Offre getOffre(String id, List<ReferenceServiceDisponibilte.Offre> offres)
