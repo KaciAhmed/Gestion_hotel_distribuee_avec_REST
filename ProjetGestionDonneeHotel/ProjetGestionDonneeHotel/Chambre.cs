@@ -19,19 +19,6 @@ namespace ProjetGestionDonneeHotel
         {
 
         }
-
-        public Chambre(int identifiant, int numero, string dateDisponibilite, float prixDeBase, bool estLibre, TypeChambre typeChambre, string urlImage)
-        {
-
-            this.identifiant = identifiant;
-            this.numero = numero;
-            this.dateDisponibilite = dateDisponibilite;
-            this.estLibre = estLibre;
-            this.prixDeBase = prixDeBase;
-            this.typeChambre = typeChambre;
-            this.urlImage = urlImage;
-            image = StreamToByteArray(urlImage);
-        }
         public Chambre(int identifiant, int numero, string dateDisponibilite, TypeChambre typeChambre, float prixDeBase, bool estLibre, string urlImage)
         {
 
@@ -44,6 +31,19 @@ namespace ProjetGestionDonneeHotel
             this.urlImage = urlImage;
             image = StreamToByteArray(urlImage);
         }
+        public Chambre(int identifiant, int numero, string dateDisponibilite, float prixDeBase, bool estLibre, TypeChambre typeChambre, string urlImage)
+        {
+
+            this.identifiant = identifiant;
+            this.numero = numero;
+            this.dateDisponibilite = dateDisponibilite;
+            this.estLibre = estLibre;
+            this.prixDeBase = prixDeBase;
+            this.typeChambre = typeChambre;
+            this.urlImage = urlImage;
+            image = StreamToByteArray(urlImage);
+        }
+
 
         public int Identifiant { get => identifiant; set => identifiant = value; }
         public int Numero { get => numero; set => numero = value; }

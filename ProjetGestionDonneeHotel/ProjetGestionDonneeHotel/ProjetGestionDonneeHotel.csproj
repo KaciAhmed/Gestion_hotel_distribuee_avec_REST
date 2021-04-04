@@ -78,6 +78,7 @@
     <Compile Include="Agence.cs" />
     <Compile Include="Chambre.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="Database.cs" />
     <Compile Include="Hotel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reservation.cs" />
