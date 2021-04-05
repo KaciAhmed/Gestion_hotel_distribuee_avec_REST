@@ -36,8 +36,8 @@ namespace ProjetGestionDonneeHotel
 
         }
         public int Identifiant { get => identifiant; set => identifiant = value; }
-        private string Nom { get => nom; set => nom = value; }
-        private int NbEtoile { get => nbEtoile; set => nbEtoile = value; }
+        public string Nom { get => nom; set => nom = value; }
+        public int NbEtoile { get => nbEtoile; set => nbEtoile = value; }
         public Adresse Adresse { get => adresse; set => adresse = value; }
         public List<Chambre> Chambres { get => chambres; set => chambres = value; }
         public List<Agence> Agences { get => agences; set => agences = value; }
