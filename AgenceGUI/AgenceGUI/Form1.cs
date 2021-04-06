@@ -120,8 +120,8 @@ namespace AgenceGUI
             // faire la recherche
             // afficher resultat
 
-            tabOffres = serviceDisponibiliteHotel.chercherDisponibilite(LoginAgence, mdp, dateArriver, dateDepart, nombrePersonne);
-            offres = new List<ReferenceServiceDisponibilte.Offre>(tabOffres);
+            //tabOffres = serviceDisponibiliteHotel.chercherDisponibilite(LoginAgence, mdp, dateArriver, dateDepart, nombrePersonne);
+            // offres = new List<ReferenceServiceDisponibilte.Offre>(tabOffres);
             afficherOffre(offres, -1);
             tabPageReserver.UseWaitCursor = false;
         }
