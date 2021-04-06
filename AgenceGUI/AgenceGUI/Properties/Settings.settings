@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AgenceGUI.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AgenceGUI_ReferenceServiceDisponibilte_ConsulterDisponibilite" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://localhost:44356/ConsulterDisponibilite.asmx</Value>
+    </Setting>
+    <Setting Name="AgenceGUI_ReferenceServiceReservation_WebServiceReservation" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://localhost:44356/WebServiceReservation.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="chercherDisponibilite">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mdp" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateDebut" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateFin" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="nbPersonne" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="chercherDisponibiliteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="chercherDisponibiliteResult" type="tns:ArrayOfOffre" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOffre">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Offre" nillable="true" type="tns:Offre" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Offre">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Identifiant" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TypeChambre" type="tns:TypeChambre" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateDisponibilite" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Prix" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="Image" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TypeChambre">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="NbLits" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="chercherDisponibiliteSoapIn">
+    <wsdl:part name="parameters" element="tns:chercherDisponibilite" />
+  </wsdl:message>
+  <wsdl:message name="chercherDisponibiliteSoapOut">
+    <wsdl:part name="parameters" element="tns:chercherDisponibiliteResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ConsulterDisponibiliteSoap">
+    <wsdl:operation name="chercherDisponibilite">
+      <wsdl:input message="tns:chercherDisponibiliteSoapIn" />
+      <wsdl:output message="tns:chercherDisponibiliteSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConsulterDisponibiliteSoap" type="tns:ConsulterDisponibiliteSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="chercherDisponibilite">
+      <soap:operation soapAction="http://tempuri.org/chercherDisponibilite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ConsulterDisponibiliteSoap12" type="tns:ConsulterDisponibiliteSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="chercherDisponibilite">
+      <soap12:operation soapAction="http://tempuri.org/chercherDisponibilite" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConsulterDisponibilite">
+    <wsdl:port name="ConsulterDisponibiliteSoap" binding="tns:ConsulterDisponibiliteSoap">
+      <soap:address location="https://localhost:44356/ConsulterDisponibilite.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ConsulterDisponibiliteSoap12" binding="tns:ConsulterDisponibiliteSoap12">
+      <soap12:address location="https://localhost:44356/ConsulterDisponibilite.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
