@@ -32,3 +32,28 @@ HMIN 210, Service web SOAP, Version distribuée-Agence de voyage et hôtels.
             * Les données en réponse du service web :
                 * Confirmation de la réservation ou problème.
                 * Référence de la réservation si cette dernière est confirmée.
+
+# Preview
+
+<img src="https://puu.sh/HwaNk/57b4c01e87.png" width="auto">
+
+## Version distribuée- service web intègre des images.
+
+* Modifier l’application précédente pour que le service « Service web 1 : Consulter
+les disponibilités par les agences partenaires » puisse retourner une image de la
+chambre proposée au client.
+
+# Preview
+
+<img src="https://puu.sh/HwaPC/50ac247fcd.png" width="auto">
+
+## (Bonus) Version distribuée- Base de données et interface graphique. 
+
+* Modifiez la version distribuée de l’application pour intégrer une base de données
+pour stocker les données persistantes.
+* Proposez une interface graphique pour l’application agence.
+
+# Preview
+
+* v1
+<img src="https://puu.sh/HwaIy/e15de2f9c8.gif" width="auto">
