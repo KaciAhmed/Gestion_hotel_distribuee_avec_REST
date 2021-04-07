@@ -57,7 +57,6 @@ namespace AgenceGUI
             this.button1 = new System.Windows.Forms.Button();
             this.labelOfferIDTag = new System.Windows.Forms.Label();
             this.labelPriceTag = new System.Windows.Forms.Label();
-            this.pictureBoxChambre = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listBoxPartnerResort = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -83,18 +82,19 @@ namespace AgenceGUI
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.pictureBoxChambre = new System.Windows.Forms.PictureBox();
             this.groupBoxSaisieRecherche.SuspendLayout();
             this.panelNbPersonne.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageRechercher.SuspendLayout();
             this.tabPageReserver.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxChambre)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControlClientDetails.SuspendLayout();
             this.tabPageUserDetail.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxChambre)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxSaisieRecherche
@@ -442,16 +442,6 @@ namespace AgenceGUI
             this.labelPriceTag.Text = "Price";
             this.labelPriceTag.UseWaitCursor = true;
             // 
-            // pictureBoxChambre
-            // 
-            this.pictureBoxChambre.Location = new System.Drawing.Point(0, 19);
-            this.pictureBoxChambre.Name = "pictureBoxChambre";
-            this.pictureBoxChambre.Size = new System.Drawing.Size(403, 215);
-            this.pictureBoxChambre.TabIndex = 17;
-            this.pictureBoxChambre.TabStop = false;
-            this.pictureBoxChambre.UseWaitCursor = true;
-            this.pictureBoxChambre.Click += new System.EventHandler(this.pictureBoxChambre_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.listBoxPartnerResort);
@@ -749,6 +739,17 @@ namespace AgenceGUI
             this.label3.TabIndex = 0;
             this.label3.Text = "Name";
             // 
+            // pictureBoxChambre
+            // 
+            this.pictureBoxChambre.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            this.pictureBoxChambre.Location = new System.Drawing.Point(0, 19);
+            this.pictureBoxChambre.Name = "pictureBoxChambre";
+            this.pictureBoxChambre.Size = new System.Drawing.Size(403, 215);
+            this.pictureBoxChambre.TabIndex = 17;
+            this.pictureBoxChambre.TabStop = false;
+            this.pictureBoxChambre.UseWaitCursor = true;
+            this.pictureBoxChambre.Click += new System.EventHandler(this.pictureBoxChambre_Click);
+            // 
             // AgenceGraphique
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -769,7 +770,6 @@ namespace AgenceGUI
             this.tabPageReserver.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxChambre)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -778,6 +778,7 @@ namespace AgenceGUI
             this.tabControlClientDetails.ResumeLayout(false);
             this.tabPageUserDetail.ResumeLayout(false);
             this.tabPageUserDetail.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxChambre)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -28,7 +28,7 @@ namespace AgenceGUI
         private readonly static string mdp = "123";
         private static ReferenceServiceDisponibilte.ConsulterDisponibilite serviceDisponibiliteHotel = new ReferenceServiceDisponibilte.ConsulterDisponibilite();
         private static ReferenceServiceReservation.WebServiceReservation serviceReservation = new ReferenceServiceReservation.WebServiceReservation();
-        private static int idOffreCourante = -1;
+        private static int idOffreCourante = 0;
         public AgenceGraphique()
         {
             InitializeComponent();
@@ -111,10 +111,9 @@ namespace AgenceGUI
 
             tabOffres = serviceDisponibiliteHotel.chercherDisponibilite(LoginAgence, mdp, dateArriver, dateDepart, nombrePersonne);
             offres = new List<ReferenceServiceDisponibilte.Offre>(tabOffres);
-            if (offres.Count > 0)
-            {
-                idOffreCourante = 0;
-            }
+           
+            idOffreCourante = offres.Count - 1;
+            
             afficherOffre(offres, idOffreCourante);
             tabPageReserver.UseWaitCursor = false;
         }
@@ -129,14 +128,12 @@ namespace AgenceGUI
         public void afficherOffre(List<ReferenceServiceDisponibilte.Offre> offres, int id)
         {
             Image image;
-            ;
             if (id < 0 || id >= offres.Count)
             {
                 labelPrice.Text = "0 €";
                 label1OfferID.Text = "0_0";
                 pictureBoxChambre.SizeMode = PictureBoxSizeMode.StretchImage;
                 image = Image.FromFile(@"./assets/404.png");
-                pictureBoxChambre.Image = image;
             }
             else
             {
@@ -144,8 +141,10 @@ namespace AgenceGUI
                 label1OfferID.Text = offres[id].Identifiant.ToString();
                 pictureBoxChambre.SizeMode = PictureBoxSizeMode.StretchImage;
                 image = byteArrayToImage(offres[id].Image);
-                pictureBoxChambre.Image = image;
             }
+            pictureBoxChambre.Image = image;
+            pictureBoxChambre.UseWaitCursor = false;
+            pictureBoxChambre.Cursor = Cursors.Hand;
         }
         public static Image byteArrayToImage(byte[] bytesArr)
         {
@@ -181,27 +180,25 @@ namespace AgenceGUI
         }
         private void pictureBoxChambre_Click(object sender, EventArgs e)
         {
-            // faire afficher l'image en grand !
+            if(pictureBoxChambre != null && pictureBoxChambre.Image != null)
+            {
+                PictureViewer pictureViewer = new PictureViewer(pictureBoxChambre.Image);
+                pictureViewer.ShowDialog();
+            }
+            
         }
         private void buttonFlecheGauche_Click(object sender, EventArgs e)
         {
-            if (offres.Count > 0)
-            {
-                idOffreCourante--;
-                idOffreCourante = idOffreCourante % offres.Count;
-                afficherOffre(offres, idOffreCourante);
-            }
+            idOffreCourante--;
+            idOffreCourante = idOffreCourante % offres.Count;
+            afficherOffre(offres, idOffreCourante);
         }
 
         private void buttonFlecheDroite_Click(object sender, EventArgs e)
         {
-            if (offres.Count > 0)
-            {
-                idOffreCourante++;
-                idOffreCourante = idOffreCourante % offres.Count;
-                afficherOffre(offres, idOffreCourante);
-            }
-            
+            idOffreCourante++;
+            idOffreCourante = idOffreCourante % offres.Count;
+            afficherOffre(offres, idOffreCourante);
         }
 
         private void buttonReserver_Click(object sender, EventArgs e)
