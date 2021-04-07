@@ -1,14 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AgenceGUI
@@ -21,9 +14,8 @@ namespace AgenceGUI
         public string nom = "La victime";
         public string prenom = "Jon";
         public string creditCardNumber = "4556816546446609";
-        ReferenceServiceDisponibilte.Offre[] tabOffres;
-        List<ReferenceServiceDisponibilte.Offre> offres;
-        String resultatReservation;
+        private ReferenceServiceDisponibilte.Offre[] tabOffres;
+        private List<ReferenceServiceDisponibilte.Offre> offres;
         private readonly static string LoginAgence = "LoginAgence1";
         private readonly static string mdp = "123";
         private static ReferenceServiceDisponibilte.ConsulterDisponibilite serviceDisponibiliteHotel = new ReferenceServiceDisponibilte.ConsulterDisponibilite();
@@ -111,15 +103,15 @@ namespace AgenceGUI
 
             tabOffres = serviceDisponibiliteHotel.chercherDisponibilite(LoginAgence, mdp, dateArriver, dateDepart, nombrePersonne);
             offres = new List<ReferenceServiceDisponibilte.Offre>(tabOffres);
-           
+
             idOffreCourante = offres.Count - 1;
-            
+
             afficherOffre(offres, idOffreCourante);
             tabPageReserver.UseWaitCursor = false;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-          
+
         }
         private void tabPage2_Click(object sender, EventArgs e)
         {
@@ -180,12 +172,12 @@ namespace AgenceGUI
         }
         private void pictureBoxChambre_Click(object sender, EventArgs e)
         {
-            if(pictureBoxChambre != null && pictureBoxChambre.Image != null)
+            if (pictureBoxChambre != null && pictureBoxChambre.Image != null)
             {
                 PictureViewer pictureViewer = new PictureViewer(pictureBoxChambre.Image);
                 pictureViewer.ShowDialog();
             }
-            
+
         }
         private void buttonFlecheGauche_Click(object sender, EventArgs e)
         {
@@ -203,13 +195,8 @@ namespace AgenceGUI
 
         private void buttonReserver_Click(object sender, EventArgs e)
         {
-            string res = effectuerReservation(LoginAgence, mdp, offres[idOffreCourante].Identifiant,dateDepart,dateArriver, nombrePersonne, textBoxName.Text, textBoxLastName.Text, textBoxCreditCardNumber.Text);
+            string res = effectuerReservation(LoginAgence, mdp, offres[idOffreCourante].Identifiant, dateDepart, dateArriver, nombrePersonne, textBoxName.Text, textBoxLastName.Text, textBoxCreditCardNumber.Text);
             afficherResultatReservation(res);
-        }
-
-        private void buttonTOTO_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
