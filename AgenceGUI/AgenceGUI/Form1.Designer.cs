@@ -49,8 +49,17 @@ namespace AgenceGUI
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageRechercher = new System.Windows.Forms.TabPage();
             this.tabPageReserver = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label1OfferID = new System.Windows.Forms.Label();
+            this.labelPrice = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.labelOfferIDTag = new System.Windows.Forms.Label();
+            this.labelPriceTag = new System.Windows.Forms.Label();
+            this.pictureBoxChambre = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxPartnerResort = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -74,28 +83,18 @@ namespace AgenceGUI
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBoxChambre = new System.Windows.Forms.PictureBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.labelPriceTag = new System.Windows.Forms.Label();
-            this.labelOfferIDTag = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.labelPrice = new System.Windows.Forms.Label();
-            this.label1OfferID = new System.Windows.Forms.Label();
-            this.tabPageConfirmation = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBoxSaisieRecherche.SuspendLayout();
             this.panelNbPersonne.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageRechercher.SuspendLayout();
             this.tabPageReserver.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxChambre)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabControlClientDetails.SuspendLayout();
             this.tabPageUserDetail.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxChambre)).BeginInit();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxSaisieRecherche
@@ -151,7 +150,7 @@ namespace AgenceGUI
             this.buttonSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSearch.ForeColor = System.Drawing.Color.Aqua;
+            this.buttonSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.buttonSearch.Location = new System.Drawing.Point(10, 203);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(216, 23);
@@ -306,7 +305,6 @@ namespace AgenceGUI
             // 
             this.tabControlMain.Controls.Add(this.tabPageRechercher);
             this.tabControlMain.Controls.Add(this.tabPageReserver);
-            this.tabControlMain.Controls.Add(this.tabPageConfirmation);
             this.tabControlMain.Location = new System.Drawing.Point(12, 12);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
@@ -339,23 +337,138 @@ namespace AgenceGUI
             this.tabPageReserver.UseWaitCursor = true;
             this.tabPageReserver.Click += new System.EventHandler(this.tabPage2_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.label1OfferID);
+            this.groupBox3.Controls.Add(this.labelPrice);
+            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.labelOfferIDTag);
+            this.groupBox3.Controls.Add(this.labelPriceTag);
+            this.groupBox3.Controls.Add(this.pictureBoxChambre);
+            this.groupBox3.Location = new System.Drawing.Point(6, 160);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(568, 234);
+            this.groupBox3.TabIndex = 18;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Results";
+            this.groupBox3.UseWaitCursor = true;
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.button3.Location = new System.Drawing.Point(500, 146);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(55, 23);
+            this.button3.TabIndex = 17;
+            this.button3.Text = "→";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseWaitCursor = true;
+            this.button3.Click += new System.EventHandler(this.buttonFlecheDroite_Click);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.button2.Location = new System.Drawing.Point(425, 146);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(54, 23);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "←";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseWaitCursor = true;
+            this.button2.Click += new System.EventHandler(this.buttonFlecheGauche_Click);
+            // 
+            // label1OfferID
+            // 
+            this.label1OfferID.AutoSize = true;
+            this.label1OfferID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1OfferID.Location = new System.Drawing.Point(504, 107);
+            this.label1OfferID.Name = "label1OfferID";
+            this.label1OfferID.Size = new System.Drawing.Size(28, 13);
+            this.label1OfferID.TabIndex = 22;
+            this.label1OfferID.Text = "0_0";
+            this.label1OfferID.UseWaitCursor = true;
+            // 
+            // labelPrice
+            // 
+            this.labelPrice.AutoSize = true;
+            this.labelPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPrice.Location = new System.Drawing.Point(504, 37);
+            this.labelPrice.Name = "labelPrice";
+            this.labelPrice.Size = new System.Drawing.Size(25, 13);
+            this.labelPrice.TabIndex = 21;
+            this.labelPrice.Text = "0.0";
+            this.labelPrice.UseWaitCursor = true;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Blue;
+            this.button1.Location = new System.Drawing.Point(425, 205);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(130, 23);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "Here we go !";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseWaitCursor = true;
+            this.button1.Click += new System.EventHandler(this.buttonReserver_Click);
+            // 
+            // labelOfferIDTag
+            // 
+            this.labelOfferIDTag.AutoSize = true;
+            this.labelOfferIDTag.Location = new System.Drawing.Point(422, 78);
+            this.labelOfferIDTag.Name = "labelOfferIDTag";
+            this.labelOfferIDTag.Size = new System.Drawing.Size(44, 13);
+            this.labelOfferIDTag.TabIndex = 19;
+            this.labelOfferIDTag.Text = "ID Offer";
+            this.labelOfferIDTag.UseWaitCursor = true;
+            // 
+            // labelPriceTag
+            // 
+            this.labelPriceTag.AutoSize = true;
+            this.labelPriceTag.Location = new System.Drawing.Point(422, 19);
+            this.labelPriceTag.Name = "labelPriceTag";
+            this.labelPriceTag.Size = new System.Drawing.Size(31, 13);
+            this.labelPriceTag.TabIndex = 18;
+            this.labelPriceTag.Text = "Price";
+            this.labelPriceTag.UseWaitCursor = true;
+            // 
+            // pictureBoxChambre
+            // 
+            this.pictureBoxChambre.Location = new System.Drawing.Point(0, 19);
+            this.pictureBoxChambre.Name = "pictureBoxChambre";
+            this.pictureBoxChambre.Size = new System.Drawing.Size(403, 215);
+            this.pictureBoxChambre.TabIndex = 17;
+            this.pictureBoxChambre.TabStop = false;
+            this.pictureBoxChambre.UseWaitCursor = true;
+            this.pictureBoxChambre.Click += new System.EventHandler(this.pictureBoxChambre_Click);
+            // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.listBox1);
+            this.groupBox2.Controls.Add(this.listBoxPartnerResort);
             this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(302, 151);
+            this.groupBox2.Size = new System.Drawing.Size(313, 151);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "List of partners resort";
             this.groupBox2.UseWaitCursor = true;
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
-            // listBox1
+            // listBoxPartnerResort
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.HorizontalScrollbar = true;
-            this.listBox1.Items.AddRange(new object[] {
+            this.listBoxPartnerResort.FormattingEnabled = true;
+            this.listBoxPartnerResort.HorizontalScrollbar = true;
+            this.listBoxPartnerResort.Items.AddRange(new object[] {
             "Holiday Inn Express Montpellier - Odysseum",
             "Crowne Plaza Montpellier - Corum",
             "Ibis Budget Montpellier Nord, ouvert en Novembre 2019",
@@ -366,12 +479,12 @@ namespace AgenceGUI
             "Hôtel Sabatier d\'Espeyran, 19th century example of a Second Empire hôtel",
             "Hôtel de Cambacérès, Built between 1723 and 1730 by architect Jean Giral",
             "Hôtel de Manse, Late 17th century"});
-            this.listBox1.Location = new System.Drawing.Point(0, 21);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.ScrollAlwaysVisible = true;
-            this.listBox1.Size = new System.Drawing.Size(302, 121);
-            this.listBox1.TabIndex = 15;
-            this.listBox1.UseWaitCursor = true;
+            this.listBoxPartnerResort.Location = new System.Drawing.Point(0, 17);
+            this.listBoxPartnerResort.Name = "listBoxPartnerResort";
+            this.listBoxPartnerResort.ScrollAlwaysVisible = true;
+            this.listBoxPartnerResort.Size = new System.Drawing.Size(313, 134);
+            this.listBoxPartnerResort.TabIndex = 15;
+            this.listBoxPartnerResort.UseWaitCursor = true;
             // 
             // groupBox1
             // 
@@ -636,120 +749,6 @@ namespace AgenceGUI
             this.label3.TabIndex = 0;
             this.label3.Text = "Name";
             // 
-            // pictureBoxChambre
-            // 
-            this.pictureBoxChambre.Location = new System.Drawing.Point(6, 19);
-            this.pictureBoxChambre.Name = "pictureBoxChambre";
-            this.pictureBoxChambre.Size = new System.Drawing.Size(397, 215);
-            this.pictureBoxChambre.TabIndex = 17;
-            this.pictureBoxChambre.TabStop = false;
-            this.pictureBoxChambre.Click += new System.EventHandler(this.pictureBoxChambre_Click);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.button3);
-            this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Controls.Add(this.label1OfferID);
-            this.groupBox3.Controls.Add(this.labelPrice);
-            this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.labelOfferIDTag);
-            this.groupBox3.Controls.Add(this.labelPriceTag);
-            this.groupBox3.Controls.Add(this.pictureBoxChambre);
-            this.groupBox3.Location = new System.Drawing.Point(6, 160);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(568, 234);
-            this.groupBox3.TabIndex = 18;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Results";
-            // 
-            // labelPriceTag
-            // 
-            this.labelPriceTag.AutoSize = true;
-            this.labelPriceTag.Location = new System.Drawing.Point(422, 19);
-            this.labelPriceTag.Name = "labelPriceTag";
-            this.labelPriceTag.Size = new System.Drawing.Size(31, 13);
-            this.labelPriceTag.TabIndex = 18;
-            this.labelPriceTag.Text = "Price";
-            // 
-            // labelOfferIDTag
-            // 
-            this.labelOfferIDTag.AutoSize = true;
-            this.labelOfferIDTag.Location = new System.Drawing.Point(422, 78);
-            this.labelOfferIDTag.Name = "labelOfferIDTag";
-            this.labelOfferIDTag.Size = new System.Drawing.Size(44, 13);
-            this.labelOfferIDTag.TabIndex = 19;
-            this.labelOfferIDTag.Text = "ID Offer";
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Aqua;
-            this.button1.Location = new System.Drawing.Point(425, 205);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(130, 23);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "Here we go !";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // labelPrice
-            // 
-            this.labelPrice.AutoSize = true;
-            this.labelPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPrice.Location = new System.Drawing.Point(504, 37);
-            this.labelPrice.Name = "labelPrice";
-            this.labelPrice.Size = new System.Drawing.Size(25, 13);
-            this.labelPrice.TabIndex = 21;
-            this.labelPrice.Text = "0.0";
-            // 
-            // label1OfferID
-            // 
-            this.label1OfferID.AutoSize = true;
-            this.label1OfferID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1OfferID.Location = new System.Drawing.Point(504, 107);
-            this.label1OfferID.Name = "label1OfferID";
-            this.label1OfferID.Size = new System.Drawing.Size(28, 13);
-            this.label1OfferID.TabIndex = 22;
-            this.label1OfferID.Text = "0_0";
-            // 
-            // tabPageConfirmation
-            // 
-            this.tabPageConfirmation.Location = new System.Drawing.Point(4, 22);
-            this.tabPageConfirmation.Name = "tabPageConfirmation";
-            this.tabPageConfirmation.Size = new System.Drawing.Size(580, 400);
-            this.tabPageConfirmation.TabIndex = 2;
-            this.tabPageConfirmation.Text = "Confirmation";
-            this.tabPageConfirmation.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.button3.Location = new System.Drawing.Point(500, 146);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(55, 23);
-            this.button3.TabIndex = 17;
-            this.button3.Text = "→";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button2
-            // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.button2.Location = new System.Drawing.Point(425, 146);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(54, 23);
-            this.button2.TabIndex = 17;
-            this.button2.Text = "←";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // AgenceGraphique
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -768,6 +767,9 @@ namespace AgenceGUI
             this.tabControlMain.ResumeLayout(false);
             this.tabPageRechercher.ResumeLayout(false);
             this.tabPageReserver.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxChambre)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -776,9 +778,6 @@ namespace AgenceGUI
             this.tabControlClientDetails.ResumeLayout(false);
             this.tabPageUserDetail.ResumeLayout(false);
             this.tabPageUserDetail.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxChambre)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -828,7 +827,7 @@ namespace AgenceGUI
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxPartnerResort;
         private System.Windows.Forms.PictureBox pictureBoxChambre;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label labelOfferIDTag;
@@ -836,7 +835,6 @@ namespace AgenceGUI
         private System.Windows.Forms.Label label1OfferID;
         private System.Windows.Forms.Label labelPrice;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TabPage tabPageConfirmation;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
     }

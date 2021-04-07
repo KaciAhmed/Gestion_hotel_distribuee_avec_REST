@@ -21,7 +21,6 @@ namespace AgenceGUI
         public string nom = "La victime";
         public string prenom = "Jon";
         public string creditCardNumber = "4556816546446609";
-        ReferenceServiceDisponibilte.Offre offre;
         ReferenceServiceDisponibilte.Offre[] tabOffres;
         List<ReferenceServiceDisponibilte.Offre> offres;
         String resultatReservation;
@@ -29,12 +28,11 @@ namespace AgenceGUI
         private readonly static string mdp = "123";
         private static ReferenceServiceDisponibilte.ConsulterDisponibilite serviceDisponibiliteHotel = new ReferenceServiceDisponibilte.ConsulterDisponibilite();
         private static ReferenceServiceReservation.WebServiceReservation serviceReservation = new ReferenceServiceReservation.WebServiceReservation();
-
+        private static int idOffreCourante = -1;
         public AgenceGraphique()
         {
             InitializeComponent();
         }
-
         private void panelNbPersonne_Paint(object sender, PaintEventArgs e)
         {
 
@@ -45,7 +43,6 @@ namespace AgenceGUI
             dateTimePickerDepart.Value = new DateTime(2021, 06, 19);
             radioButtonNb1.Checked = true;
         }
-
         private void buttonSearchFillProfil2_Click(object sender, EventArgs e)
         {
             dateTimePickerArriver.Value = new DateTime(2021, 06, 22);
@@ -67,7 +64,6 @@ namespace AgenceGUI
             radioButtonNb2.Checked = false;
             radioButtonNb3.Checked = false;
         }
-
         private void buttonClientFillProfil1_Click(object sender, EventArgs e)
         {
             textBoxName.Text = "Anaïs";
@@ -76,7 +72,6 @@ namespace AgenceGUI
             dateTimePickerCreditCard.Value = new DateTime(2023, 12, 01);
             textBoxCreditCardCVV.Text = "269";
         }
-
         private void buttonClientFillProfil2_Click(object sender, EventArgs e)
         {
             textBoxName.Text = "Léon";
@@ -85,7 +80,6 @@ namespace AgenceGUI
             dateTimePickerCreditCard.Value = new DateTime(2021, 08, 01);
             textBoxCreditCardCVV.Text = "574";
         }
-
         private void buttonResetDetails_Click(object sender, EventArgs e)
         {
             textBoxName.Text = "";
@@ -94,12 +88,10 @@ namespace AgenceGUI
             dateTimePickerCreditCard.Value = DateTime.Today;
             textBoxCreditCardCVV.Text = "";
         }
-
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             dateArriver = dateTimePickerArriver.Value.Date.ToString("dd/MM/yyyy");
             dateDepart = dateTimePickerDepart.Value.Date.ToString("dd/MM/yyyy");
-            // nbPersonnes switch case
             if (radioButtonNb3.Checked)
             {
                 nombrePersonne = 3;
@@ -117,20 +109,19 @@ namespace AgenceGUI
             creditCardNumber = textBoxCreditCardNumber.Text.ToString();
             tabControlMain.SelectedIndex = 1;
 
-            // faire la recherche
-            // afficher resultat
-
-            //tabOffres = serviceDisponibiliteHotel.chercherDisponibilite(LoginAgence, mdp, dateArriver, dateDepart, nombrePersonne);
-            // offres = new List<ReferenceServiceDisponibilte.Offre>(tabOffres);
-            afficherOffre(offres, -1);
+            tabOffres = serviceDisponibiliteHotel.chercherDisponibilite(LoginAgence, mdp, dateArriver, dateDepart, nombrePersonne);
+            offres = new List<ReferenceServiceDisponibilte.Offre>(tabOffres);
+            if (offres.Count > 0)
+            {
+                idOffreCourante = 0;
+            }
+            afficherOffre(offres, idOffreCourante);
             tabPageReserver.UseWaitCursor = false;
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
           
         }
-
         private void tabPage2_Click(object sender, EventArgs e)
         {
 
@@ -138,18 +129,23 @@ namespace AgenceGUI
         public void afficherOffre(List<ReferenceServiceDisponibilte.Offre> offres, int id)
         {
             Image image;
-            pictureBoxChambre.SizeMode = PictureBoxSizeMode.StretchImage;
-            if (id <= 0 || id >= offres.Count)
+            ;
+            if (id < 0 || id >= offres.Count)
             {
+                labelPrice.Text = "0 €";
+                label1OfferID.Text = "0_0";
+                pictureBoxChambre.SizeMode = PictureBoxSizeMode.StretchImage;
                 image = Image.FromFile(@"./assets/404.png");
                 pictureBoxChambre.Image = image;
             }
             else
             {
+                labelPrice.Text = offres[id].Prix.ToString() + " €";
+                label1OfferID.Text = offres[id].Identifiant.ToString();
+                pictureBoxChambre.SizeMode = PictureBoxSizeMode.StretchImage;
                 image = byteArrayToImage(offres[id].Image);
                 pictureBoxChambre.Image = image;
             }
-           
         }
         public static Image byteArrayToImage(byte[] bytesArr)
         {
@@ -161,15 +157,7 @@ namespace AgenceGUI
         }
         private static void afficherResultatReservation(String resultat)
         {
-            if (resultat.StartsWith("#"))
-            {
-                Console.WriteLine("Réservation réussi.");
-                Console.WriteLine("La référence de votre réservation est :" + resultat);
-            }
-            else
-            {
-                Console.WriteLine(resultat);
-            }
+            MessageBox.Show("Réservation " + resultat);
         }
         public static ReferenceServiceDisponibilte.Offre getOffre(String id, List<ReferenceServiceDisponibilte.Offre> offres)
         {
@@ -191,20 +179,40 @@ namespace AgenceGUI
         {
 
         }
-
         private void pictureBoxChambre_Click(object sender, EventArgs e)
         {
+            // faire afficher l'image en grand !
+        }
+        private void buttonFlecheGauche_Click(object sender, EventArgs e)
+        {
+            if (offres.Count > 0)
+            {
+                idOffreCourante--;
+                idOffreCourante = idOffreCourante % offres.Count;
+                afficherOffre(offres, idOffreCourante);
+            }
+        }
+
+        private void buttonFlecheDroite_Click(object sender, EventArgs e)
+        {
+            if (offres.Count > 0)
+            {
+                idOffreCourante++;
+                idOffreCourante = idOffreCourante % offres.Count;
+                afficherOffre(offres, idOffreCourante);
+            }
             
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonReserver_Click(object sender, EventArgs e)
         {
-            // faire oppération modulo pour l'id dans la range de la liste de l'offre
+            string res = effectuerReservation(LoginAgence, mdp, offres[idOffreCourante].Identifiant,dateDepart,dateArriver, nombrePersonne, textBoxName.Text, textBoxLastName.Text, textBoxCreditCardNumber.Text);
+            afficherResultatReservation(res);
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonTOTO_Click(object sender, EventArgs e)
         {
-            // faire oppération modulo pour l'id dans la range de la liste de l'offre
+
         }
     }
 }
