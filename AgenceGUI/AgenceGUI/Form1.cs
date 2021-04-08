@@ -111,7 +111,8 @@ namespace AgenceGUI
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
         private void tabPage2_Click(object sender, EventArgs e)
         {

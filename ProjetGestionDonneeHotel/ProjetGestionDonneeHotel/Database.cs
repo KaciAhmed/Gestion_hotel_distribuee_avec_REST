@@ -1,18 +1,31 @@
-﻿namespace ProjetGestionDonneeHotel
+﻿using System;
+using System.Data.SQLite;
+using System.IO;
+
+namespace ProjetGestionDonneeHotel
 {
     public static class Database
     {
+        private static SQLiteConnection myConnection;
         private static Hotel monHotel;
         private static Agence agence1;
         private static Agence agence2;
         private static Agence agence3;
 
         private static string pathDossierAChanger = @"E:\gitlab.com\";
-        private static string pathDossierImage = @"gestionhoteldistribueparagencedevoyage\ProjetGestionDonneeHotel\ProjetGestionDonneeHotel\assets\";
-        private static string pathDossierImages = pathDossierAChanger + pathDossierImage;
-
+        private static string pathDossierAssets = @"gestionhoteldistribueparagencedevoyage\ProjetGestionDonneeHotel\ProjetGestionDonneeHotel\assets\";
+        private static string pathDossierImages = pathDossierAChanger + pathDossierAssets;
+        private static string databaseName = "hotel.db";
+        private static string pathCompletDatabase = pathDossierAChanger + pathDossierAssets + databaseName;
+        private static string dataSource = @"Data Source=" + pathCompletDatabase;
         static Database()
         {
+            myConnection = new SQLiteConnection(dataSource);
+            if (!File.Exists(pathCompletDatabase))
+            {
+                SQLiteConnection.CreateFile(pathCompletDatabase);
+                createTables();
+            }
             monHotel = new Hotel(1, "Hotel1", 5, new Adresse(1, 12, "Rue Hotel 1", "France", "43.6°N, 3.9°E", "Lieu dit Hotel 1"));
 
             TypeChambre typeChambre1 = new TypeChambre(1);
@@ -64,6 +77,42 @@
                 }
             }
         }
+        public  static void OpenConnection()
+        {
+            if (myConnection.State != System.Data.ConnectionState.Open)
+            {
+                myConnection.Open();
+            }
+        }
+        public static void CloseConnection()
+        {
+            if(myConnection.State != System.Data.ConnectionState.Closed)
+            {
+                myConnection.Close();
+            }
+        }
+        private static void createTables()
+        {
+            // méthode qui peut etre remplacé par un fichier SQL create table + insert into 
+            // ici faire les insert dans la base de donnée
+        }
 
+        public static Hotel GetHotelFromDB()
+        {
+            SQLiteCommand command;
+            SQLiteDataReader dataReader;
+            string sql, Output = "";
+            sql = "Select * from hotel";
+            command = new SQLiteCommand(sql, myConnection);
+            dataReader = command.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                Output = Output + dataReader.GetValue(0) + " - " + dataReader.GetValue(1) + "\n";
+            }
+
+            dataReader.Close();
+            return null;
+        }
     }
 }
