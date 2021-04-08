@@ -21,7 +21,6 @@ namespace ProjetGestionDonneeHotel
         private Agence agence3;
         public WebServiceGestionDonnee()
         {
-            Database.OpenConnection();
             monHotel = Database.getHotel();
             agence1 = monHotel.Agences[0];
             agence2 = monHotel.Agences[1];

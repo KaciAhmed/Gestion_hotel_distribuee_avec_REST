@@ -43,7 +43,7 @@ namespace ProjetGestionDonneeHotel
         public int Identifiant { get => identifiant; set => identifiant = value; }
         public string Nom { get => nom; set => nom = value; }
         public string Login { get => login; set => login = value; }
-        public string MotDePAsse { get => motDePAsse; set => motDePAsse = value; }
+        public string MotDePasse { get => motDePAsse; set => motDePAsse = value; }
         public double PourcentageReduction { get => pourcentageReduction; set => pourcentageReduction = value; }
         public Adresse Adresse { get => adresse; set => adresse = value; }
         public List<Reservation> HistoriqueReservations { get => historiqueReservations; set => historiqueReservations = value; }

@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿using System;
+using System.Data.SQLite;
 using System.IO;
 
 namespace ProjetGestionDonneeHotel
@@ -13,35 +14,40 @@ namespace ProjetGestionDonneeHotel
 
         private static string pathDossierAChanger = @"E:\gitlab.com\";
         private static string pathDossierAssets = @"gestionhoteldistribueparagencedevoyage\ProjetGestionDonneeHotel\ProjetGestionDonneeHotel\assets\";
+
         private static string pathDossierImages = pathDossierAChanger + pathDossierAssets;
-        private static string databaseName = "hotel.db";
+        
+        private static string databaseName = "DB_Hotels.db";
         private static string pathCompletDatabase = pathDossierAChanger + pathDossierAssets + databaseName;
         private static string dataSource = @"Data Source=" + pathCompletDatabase;
         static Database()
         {
             myConnection = new SQLiteConnection(dataSource);
+            OpenConnection();
             if (!File.Exists(pathCompletDatabase))
             {
                 SQLiteConnection.CreateFile(pathCompletDatabase);
-                createTables();
             }
-            monHotel = new Hotel(1, "Hotel1", 5, new Adresse(1, 12, "Rue Hotel 1", "France", "43.6°N, 3.9°E", "Lieu dit Hotel 1"));
+            createDatabase();
 
-            TypeChambre typeChambre1 = new TypeChambre(1);
-            TypeChambre typeChambre2 = new TypeChambre(2);
-            TypeChambre typeChambre3 = new TypeChambre(3);
+            int identifiantHotel = 1;
+            monHotel = GetHotelFromDB(identifiantHotel);
 
-            Chambre chambre1 = new Chambre(1, 1, "01/03/2021", typeChambre1, 42, true, pathDossierImages + "1_lit.png");
-            Chambre chambre2 = new Chambre(2, 15, "10/03/2021", typeChambre1, 40, true, pathDossierImages + "1_lit.png");
-            Chambre chambre3 = new Chambre(3, 12, "10/04/2021", typeChambre1, 30, true, pathDossierImages + "1_lit.png");
+            TypeChambre typeChambre1 = GetTypeChambreFromDB(1);
+            TypeChambre typeChambre2 = GetTypeChambreFromDB(2);
+            TypeChambre typeChambre3 = GetTypeChambreFromDB(3);
 
-            Chambre chambre4 = new Chambre(4, 22, "02/03/2021", typeChambre2, 70, true, pathDossierImages + "2_lit.png");
-            Chambre chambre5 = new Chambre(5, 25, "20/03/2021", typeChambre2, 65, true, pathDossierImages + "2_lit.png");
-            Chambre chambre6 = new Chambre(6, 28, "02/04/2021", typeChambre2, 60, true, pathDossierImages + "2_lit.png");
+            Chambre chambre1 = GetChambreFromDB(1);
+            Chambre chambre2 = GetChambreFromDB(2);
+            Chambre chambre3 = GetChambreFromDB(3);
 
-            Chambre chambre7 = new Chambre(7, 32, "02/03/2021", typeChambre3, 100, true, pathDossierImages + "3_lit.png");
-            Chambre chambre8 = new Chambre(8, 35, "18/03/2021", typeChambre3, 90, true, pathDossierImages + "3_lit.png");
-            Chambre chambre9 = new Chambre(9, 38, "31/03/2021", typeChambre3, 85, true, pathDossierImages + "3_lit.png");
+            Chambre chambre4 = GetChambreFromDB(4);
+            Chambre chambre5 = GetChambreFromDB(5);
+            Chambre chambre6 = GetChambreFromDB(6);
+
+            Chambre chambre7 = GetChambreFromDB(7);
+            Chambre chambre8 = GetChambreFromDB(8);
+            Chambre chambre9 = GetChambreFromDB(9);
 
             monHotel.Chambres.Add(chambre1);
             monHotel.Chambres.Add(chambre2);
@@ -53,13 +59,14 @@ namespace ProjetGestionDonneeHotel
             monHotel.Chambres.Add(chambre8);
             monHotel.Chambres.Add(chambre9);
 
-            agence1 = new Agence(1, "NomAgence1", "LoginAgence1", "123", 0.25, new Adresse(1, 25, "Rue Agence 1", "France", "43.6°N, 3.9°E", "Lieu dit Agence 1"));
-            agence2 = new Agence(2, "NomAgence2", "LoginAgence2", "123", 0.2, new Adresse(2, 2, "Rue Agence 2", "France", "43.6°N, 3.9°E", "Lieu dit Agence 2"));
-            agence3 = new Agence(3, "NomAgence3", "LoginAgence3", "123", 0.12, new Adresse(3, 13, "Rue Agence 3", "France", "43.6°N, 3.9°E", "Lieu dit Agence 3"));
+            agence1 = GetAgenceFromDB(1);
+            agence2 = GetAgenceFromDB(2);
+            agence3 = GetAgenceFromDB(3);
 
             monHotel.Agences.Add(agence1);
             monHotel.Agences.Add(agence2);
             monHotel.Agences.Add(agence3);
+            CloseConnection();
         }
         public static Hotel getHotel()
         {
@@ -90,28 +97,140 @@ namespace ProjetGestionDonneeHotel
                 myConnection.Close();
             }
         }
-        private static void createTables()
+        private static void createDatabase()
         {
-            // méthode qui peut etre remplacé par un fichier SQL create table + insert into 
-            // ici faire les insert dans la base de donnée
+            string createTables = File.ReadAllText(pathDossierImages + "drop_create.sql");
+            string insertRows = File.ReadAllText(pathDossierImages + "insert.sql");
+          //  
+            SQLiteCommand command = new SQLiteCommand(createTables, myConnection);
+            command.ExecuteNonQuery();
+            command = new SQLiteCommand(insertRows, myConnection);
+            command.ExecuteNonQuery();
+           // 
         }
 
-        public static Hotel GetHotelFromDB()
+        public static Hotel GetHotelFromDB(int identifiant)
         {
+            //
+            Hotel hotelARetourner = new Hotel();
             SQLiteCommand command;
             SQLiteDataReader dataReader;
-            string sql, Output = "";
-            sql = "Select * from hotel";
+            string sql = "SELECT * FROM Hotel H WHERE H.Identifiant = " + identifiant.ToString();
             command = new SQLiteCommand(sql, myConnection);
             dataReader = command.ExecuteReader();
 
             while (dataReader.Read())
             {
-                Output = Output + dataReader.GetValue(0) + " - " + dataReader.GetValue(1) + "\n";
+                hotelARetourner.Identifiant = dataReader.GetInt32(0);
+                hotelARetourner.Nom = dataReader.GetString(1);
+                hotelARetourner.NbEtoile = dataReader.GetInt32(2);
+                hotelARetourner.Adresse = GetAdresseFromDB(dataReader.GetInt32(3));
+            }
+            
+            
+
+            dataReader.Close();
+           // 
+            return hotelARetourner;
+        }
+
+        private static Adresse GetAdresseFromDB(int identifiant)
+        {
+            
+            Adresse AdresseARetourner = new Adresse();
+            SQLiteCommand command;
+            SQLiteDataReader dataReader;
+            string sql = "SELECT * FROM Adresse A WHERE A.Identifiant = " + identifiant.ToString();
+            command = new SQLiteCommand(sql, myConnection);
+            dataReader = command.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                AdresseARetourner.Identifiant = dataReader.GetInt32(0);
+                AdresseARetourner.Numero = dataReader.GetInt32(1);
+                AdresseARetourner.Rue = dataReader.GetString(2);
+                AdresseARetourner.Pays = dataReader.GetString(3);
+                AdresseARetourner.PositionGPS = dataReader.GetString(4);
+                AdresseARetourner.LieuDit = dataReader.GetString(5);
             }
 
             dataReader.Close();
-            return null;
+            
+            return AdresseARetourner;
         }
+
+        private static TypeChambre GetTypeChambreFromDB(int identifiant)
+        {
+            
+            TypeChambre typeChambreARetourner = new TypeChambre();
+            SQLiteCommand command;
+            SQLiteDataReader dataReader;
+            string sql = "SELECT * FROM TypeChambre TC WHERE TC.Identifiant = " + identifiant.ToString();
+            command = new SQLiteCommand(sql, myConnection);
+            dataReader = command.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                typeChambreARetourner.NbLits = dataReader.GetInt32(1);
+            }
+
+            dataReader.Close();
+            
+            return typeChambreARetourner;
+        }
+
+        private static Chambre GetChambreFromDB(int identifiant)
+        {
+            
+            Chambre chambreARetourner = new Chambre();
+            SQLiteCommand command;
+            SQLiteDataReader dataReader;
+            string sql = "SELECT * FROM Chambre C WHERE C.Identifiant = " + identifiant.ToString();
+            command = new SQLiteCommand(sql, myConnection);
+            dataReader = command.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                chambreARetourner.Identifiant = dataReader.GetInt32(0);
+                chambreARetourner.Numero = dataReader.GetInt32(1);
+                chambreARetourner.EstLibre = dataReader.GetBoolean(2);
+                chambreARetourner.DateDisponibilite = dataReader.GetString(3);
+                chambreARetourner.PrixDeBase = dataReader.GetFloat(4);
+                chambreARetourner.UrlImage = dataReader.GetString(5);
+                chambreARetourner.TypeChambre = GetTypeChambreFromDB(dataReader.GetInt32(6));
+                
+            }
+
+            dataReader.Close();
+            
+            return chambreARetourner;
+        }
+
+        private static Agence GetAgenceFromDB(int identifiant)
+        {
+            
+            Agence agenceARetourner = new Agence();
+            SQLiteCommand command;
+            SQLiteDataReader dataReader;
+            string sql = "SELECT * FROM Agence A WHERE A.Identifiant = " + identifiant.ToString();
+            command = new SQLiteCommand(sql, myConnection);
+            dataReader = command.ExecuteReader();
+
+            while (dataReader.Read())
+            {
+                agenceARetourner.Identifiant = dataReader.GetInt32(0);
+                agenceARetourner.Nom = dataReader.GetString(1);
+                agenceARetourner.Login = dataReader.GetString(2);
+                agenceARetourner.MotDePasse = dataReader.GetString(3);
+                agenceARetourner.PourcentageReduction = dataReader.GetFloat(4);
+                agenceARetourner.Adresse = GetAdresseFromDB(dataReader.GetInt32(5));
+            }
+
+            dataReader.Close();
+            
+            return agenceARetourner;
+        }
+
+
     }
 }
