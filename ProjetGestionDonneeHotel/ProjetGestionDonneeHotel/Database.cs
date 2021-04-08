@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 using System.IO;
 
 namespace ProjetGestionDonneeHotel
@@ -77,7 +76,7 @@ namespace ProjetGestionDonneeHotel
                 }
             }
         }
-        public  static void OpenConnection()
+        public static void OpenConnection()
         {
             if (myConnection.State != System.Data.ConnectionState.Open)
             {
@@ -86,7 +85,7 @@ namespace ProjetGestionDonneeHotel
         }
         public static void CloseConnection()
         {
-            if(myConnection.State != System.Data.ConnectionState.Closed)
+            if (myConnection.State != System.Data.ConnectionState.Closed)
             {
                 myConnection.Close();
             }
