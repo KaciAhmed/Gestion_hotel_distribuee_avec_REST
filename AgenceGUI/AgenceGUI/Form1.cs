@@ -100,8 +100,15 @@ namespace AgenceGUI
             nom = textBoxLastName.Text.ToString();
             creditCardNumber = textBoxCreditCardNumber.Text.ToString();
             tabControlMain.SelectedIndex = 1;
-
-            tabOffres = serviceDisponibiliteHotel.chercherDisponibilite(LoginAgence, mdp, dateArriver, dateDepart, nombrePersonne);
+            try
+            {
+                tabOffres = serviceDisponibiliteHotel.chercherDisponibilite(LoginAgence, mdp, dateArriver, dateDepart, nombrePersonne);
+            }
+            catch
+            {
+                tabOffres = new ReferenceServiceDisponibilte.Offre[0];
+            }
+            
             offres = new List<ReferenceServiceDisponibilte.Offre>(tabOffres);
 
             idOffreCourante = offres.Count - 1;
@@ -196,7 +203,15 @@ namespace AgenceGUI
 
         private void buttonReserver_Click(object sender, EventArgs e)
         {
-            string res = effectuerReservation(LoginAgence, mdp, offres[idOffreCourante].Identifiant, dateDepart, dateArriver, nombrePersonne, textBoxName.Text, textBoxLastName.Text, textBoxCreditCardNumber.Text);
+            string res = "";
+            try
+            {
+                res = effectuerReservation(LoginAgence, mdp, offres[idOffreCourante].Identifiant, dateDepart, dateArriver, nombrePersonne, textBoxName.Text, textBoxLastName.Text, textBoxCreditCardNumber.Text);
+            }catch
+            {
+                res = "not happenning ;-)";
+            }
+            
             afficherResultatReservation(res);
         }
     }
