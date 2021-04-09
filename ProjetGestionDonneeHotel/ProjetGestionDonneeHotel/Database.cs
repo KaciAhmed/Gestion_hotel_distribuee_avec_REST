@@ -198,7 +198,7 @@ namespace ProjetGestionDonneeHotel
                 chambreARetourner.PrixDeBase = dataReader.GetFloat(4);
                 chambreARetourner.UrlImage = dataReader.GetString(5);
                 chambreARetourner.TypeChambre = GetTypeChambreFromDB(dataReader.GetInt32(6));
-                
+                chambreARetourner.Image = chambreARetourner.StreamToByteArray(chambreARetourner.UrlImage);
             }
 
             dataReader.Close();

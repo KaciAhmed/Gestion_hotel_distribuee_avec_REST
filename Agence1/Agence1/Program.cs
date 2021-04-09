@@ -60,7 +60,8 @@ namespace Agence1
                 }
             } while (!choix.Equals("-1"));
 
-            Console.ReadLine();
+            Console.WriteLine("Merci de votre visite ! Appuyez sur une touche pour quitter");
+            Console.ReadKey();
         }
         private static string saisie(string nomAfficher)
         {

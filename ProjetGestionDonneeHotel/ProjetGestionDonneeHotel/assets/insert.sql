@@ -17,9 +17,9 @@ insert into Hotel (identifiant, nom, nbetoile, adresse) values (1, 'Hotel1', 5, 
 insert into Hotel (identifiant, nom, nbetoile, adresse) values (2, 'Hotel2', 4, 5);
 insert into Hotel (identifiant, nom, nbetoile, adresse) values (3, 'Hotel3', 3, 6);
 -- Agence
-insert into Agence (identifiant, nom, login, motdepasse, pourcentagereduction, adresse, idHotel) values (1, 'Kshlerin-Breitenberg', 'LoginAgence1', "123", 9, 1, 1);
-insert into Agence (identifiant, nom, login, motdepasse, pourcentagereduction, adresse, idHotel) values (2, 'Bashirian, Goyette and Denesik', 'LoginAgence2', "123", 32, 2, 2);
-insert into Agence (identifiant, nom, login, motdepasse, pourcentagereduction, adresse, idHotel) values (3, 'Hyatt-Corwin', 'LoginAgence3', "123", 27, 3, 3);
+insert into Agence (identifiant, nom, login, motdepasse, pourcentagereduction, adresse, idHotel) values (1, 'Kshlerin-Breitenberg', 'LoginAgence1', "123", 0.09, 1, 1);
+insert into Agence (identifiant, nom, login, motdepasse, pourcentagereduction, adresse, idHotel) values (2, 'Bashirian, Goyette and Denesik', 'LoginAgence2', "123", 0.32, 2, 2);
+insert into Agence (identifiant, nom, login, motdepasse, pourcentagereduction, adresse, idHotel) values (3, 'Hyatt-Corwin', 'LoginAgence3', "123", 0.27, 3, 3);
 -- Chambre
 insert into Chambre (identifiant, numero, estlibre, datedisponibilite, prixdebase, urlimage, typechambre, idHotel) values (1, 1, true, '01/03/2021', 51, "E:\gitlab.com\gestionhoteldistribueparagencedevoyage\ProjetGestionDonneeHotel\ProjetGestionDonneeHotel\assets\1_lit.png", 1, 1);
 insert into Chambre (identifiant, numero, estlibre, datedisponibilite, prixdebase, urlimage, typechambre, idHotel) values (2, 15, true, '10/03/2021', 41, "E:\gitlab.com\gestionhoteldistribueparagencedevoyage\ProjetGestionDonneeHotel\ProjetGestionDonneeHotel\assets\1_lit.png", 1, 1);

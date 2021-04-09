@@ -65,7 +65,7 @@ CREATE TABLE Agence (
     Nom                  VARCHAR,
     Login                VARCHAR,
     MotDePasse           VARCHAR,
-    PourcentageReduction NUMERIC (3, 2),
+    PourcentageReduction NUMERIC (1, 2),
     Adresse              NUMERIC        CONSTRAINT FK_AGENCE_ADRESSE REFERENCES Adresse (Identifiant),
     idHotel              NUMERIC CONSTRAINT FK_AGENCE_HOTEL REFERENCES Hotel (Identifiant) 
 );

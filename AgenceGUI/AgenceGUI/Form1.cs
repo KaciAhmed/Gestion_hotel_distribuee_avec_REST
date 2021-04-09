@@ -58,16 +58,16 @@ namespace AgenceGUI
         }
         private void buttonClientFillProfil1_Click(object sender, EventArgs e)
         {
-            textBoxName.Text = "Anaïs";
-            textBoxLastName.Text = "Durand";
+            textBoxName.Text = "Kaci";
+            textBoxLastName.Text = "Yanis";
             textBoxCreditCardNumber.Text = "4556517655594573";
             dateTimePickerCreditCard.Value = new DateTime(2023, 12, 01);
             textBoxCreditCardCVV.Text = "269";
         }
         private void buttonClientFillProfil2_Click(object sender, EventArgs e)
         {
-            textBoxName.Text = "Léon";
-            textBoxLastName.Text = "Laroche";
+            textBoxName.Text = "Allouch";
+            textBoxLastName.Text = "Ahmed";
             textBoxCreditCardNumber.Text = "4532182908400661";
             dateTimePickerCreditCard.Value = new DateTime(2021, 08, 01);
             textBoxCreditCardCVV.Text = "574";

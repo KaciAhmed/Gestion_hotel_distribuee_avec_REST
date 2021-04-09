@@ -44,7 +44,7 @@ namespace VersionDistribueeHotel
             List<ServiceGestionDonnee.Agence> agences = new List<ServiceGestionDonnee.Agence>(tabAgences);
             foreach (ServiceGestionDonnee.Agence agence in agences)
             {
-                if (login.Equals(agence.Login) && mdp.Equals(agence.MotDePAsse))
+                if (login.Equals(agence.Login) && mdp.Equals(agence.MotDePasse))
                 {
                     monAgenceEnTraitement = agence;
                     return true;
