@@ -57,3 +57,6 @@ pour stocker les données persistantes.
 
 * v1
 <img src="https://puu.sh/HwaIy/e15de2f9c8.gif" width="auto">
+
+* v2
+<img src="https://puu.sh/HwPdv/f3c634f90c.png" width="auto">
