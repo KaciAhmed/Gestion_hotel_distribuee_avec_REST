@@ -60,3 +60,12 @@ pour stocker les données persistantes.
 
 * v2
 <img src="https://puu.sh/HwPdv/f3c634f90c.png" width="auto">
+
+# How to run ?
+
+* Nous ne garantissons pas le fonctionnement des exécutables fournis dans le dépot.
+* Il est recommandé de suivre les étapes suivantes :
+    * La GUI présenté ci-dessus de l'agence, peut tourner indépendamment des services web sans planté dans la limite du raisonable.
+    * Il est nécéssaire d'éxécuter une fois les web service et de récupéré leur URL et PORT propre a votre machine pour les mettre a jour dans le projet Agence (Console/GUI).
+    * N'oubliez pas de clean tout version de build présente dans la solution, puis de build de nouveau avec votre configuration.
+    * Vous pouvez alors éxécuter les deux web services, puis l'applcation de Agence de votre choix.
